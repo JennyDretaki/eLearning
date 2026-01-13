@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cybersecurity & Ethical Hacking — Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. What is Cybersecurity & Ethical Hacking</button>
+            <button onclick="showSection('scope')">2. Scope & Goals</button>
+            <button onclick="showSection('methodology')">3. Ethical Hacking Methodology</button>
+            <button onclick="showSection('labs')">4. Safe Lab Setup & Practice</button>
+            <button onclick="showSection('tools')">5. Common Tools (Overview)</button>
+            <button onclick="showSection('defense')">6. Defensive Security & Hardening</button>
+            <button onclick="showSection('incident')">7. Incident Response & Forensics</button>
+            <button onclick="showSection('privacy')">8. Privacy, Law & Ethics</button>
+            <button onclick="showSection('career')">9. Careers & Certifications</button>
+            <button onclick="showSection('learning')">10. Learning Path & Resources</button>
+            <button onclick="showSection('best')">11. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content" role="main" aria-live="polite">
+            <h1>Cybersecurity & Ethical Hacking — Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. What is Cybersecurity & Ethical Hacking</h2>
+                <p>Cybersecurity is the practice of protecting systems, networks, and data from digital attacks. Ethical hacking (also called penetration testing) is the authorized practice of probing systems to find vulnerabilities so they can be fixed.</p>
+                <ul>
+                    <li>Defensive goal: protect confidentiality, integrity, availability (CIA triad).</li>
+                    <li>Ethical hackers simulate attacks in controlled, legal environments to improve security.</li>
+                </ul>
+            </section>
+
+            <section id="scope">
+                <h2>2. Scope & Goals</h2>
+                <p>Key objectives in cybersecurity:</p>
+                <ul>
+                    <li><b>Prevention:</b> reduce attack surface via hardening and secure design.</li>
+                    <li><b>Detection:</b> monitoring and logging to identify intrusions quickly.</li>
+                    <li><b>Response:</b> incident handling and recovery.</li>
+                    <li><b>Recovery:</b> restore systems and learn from incidents.</li>
+                </ul>
+            </section>
+
+            <section id="methodology">
+                <h2>3. Ethical Hacking Methodology</h2>
+                <p>Typical high-level phases (conceptual)</p>
+                <ul>
+                    <li><b>Reconnaissance:</b> gather public information (domain names, IP ranges, public assets).</li>
+                    <li><b>Enumeration / Scanning:</b> map services and potential weaknesses — done in lab or with permission.</li>
+                    <li><b>Analysis:</b> prioritize findings and decide what to test further.</li>
+                    <li><b>Testing / Validation:</b> validate vulnerabilities safely (non-destructive), report results.</li>
+                    <li><b>Remediation & Retest:</b> advise fixes and verify patches.</li>
+                </ul>
+                <p><em>Note:</em> I will not provide step-by-step exploitation instructions. All testing must be performed in an authorized environment and follow rules of engagement.</p>
+            </section>
+
+            <section id="labs">
+                <h2>4. Safe Lab Setup & Practice</h2>
+                <p>Practice only in isolated, legal environments. Recommended approach:</p>
+                <ul>
+                    <li>Use virtualization (VMware, VirtualBox) or cloud sandboxes with strict network isolation.</li>
+                    <li>Use intentionally vulnerable targets designed for learning (legal):</li>
+                    <ul>
+                        <li>OWASP Juice Shop — web app security training.</li>
+                        <li>TryHackMe & Hack The Box — guided, legal CTF-like labs.</li>
+                        <li>Metasploitable (educational image) — only on isolated networks.</li>
+                    </ul>
+                    <li>Snapshot/restore VMs frequently to avoid persistent damage.</li>
+                    <li>Label and separate lab networks from production or home networks.</li>
+                </ul>
+            </section>
+
+            <section id="tools">
+                <h2>5. Common Tools (Overview)</h2>
+                <p>Tools are used by both defenders and testers. Below are common categories and safe, high-level descriptions:</p>
+                <ul>
+                    <li><b>Network discovery & scanning:</b> identify hosts and services (purpose: asset inventory).</li>
+                    <li><b>Traffic analysis:</b> capture and inspect network packets to troubleshoot and detect anomalies (e.g., protocol issues).</li>
+                    <li><b>Vulnerability scanners:</b> automated discovery of known issues for prioritization.</li>
+                    <li><b>Password auditing tools:</b> validate strength of credentials in a controlled environment.</li>
+                    <li><b>Forensics tools:</b> acquire and analyze disk/images and memory for incident investigation.</li>
+                </ul>
+                <p><em>Examples (tool names only, for research):</em> Nmap, Wireshark, Nessus/OpenVAS, Burp Suite, Metasploit (framework), Hashcat, Autopsy, Volatility.</p>
+                <p>Research their official docs and use them only where you have authorization.</p>
+            </section>
+
+            <section id="defense">
+                <h2>6. Defensive Security & Hardening</h2>
+                <ul>
+                    <li><b>Network segmentation:</b> limit lateral movement by separating environments.</li>
+                    <li><b>Least privilege:</b> grant minimum necessary permissions.</li>
+                    <li><b>Patch management:</b> keep OS and software up-to-date.</li>
+                    <li><b>Multi-factor authentication (MFA):</b> reduce risk from credential theft.</li>
+                    <li><b>Secure configuration:</b> disable unused services and enforce strong settings.</li>
+                    <li><b>Logging & SIEM:</b> centralize logs and use detection rules/alerting.</li>
+                </ul>
+            </section>
+
+            <section id="incident">
+                <h2>7. Incident Response & Forensics</h2>
+                <p>High-level incident response phases:</p>
+                <ol>
+                    <li><b>Preparation:</b> policies, runbooks, and backups.</li>
+                    <li><b>Identification:</b> detect anomalies and confirm incidents.</li>
+                    <li><b>Containment:</b> isolate affected systems to limit damage.</li>
+                    <li><b>Eradication:</b> remove root cause (malware, compromised accounts).</li>
+                    <li><b>Recovery:</b> restore systems and verify integrity.</li>
+                    <li><b>Lessons learned:</b> update controls, documentation, and training.</li>
+                </ol>
+                <p>Forensics: collect and preserve evidence (for legal use) — follow accepted procedures, maintain chain of custody.</p>
+            </section>
+
+            <section id="privacy">
+                <h2>8. Privacy, Law & Ethics</h2>
+                <ul>
+                    <li>Always obtain explicit permission (contract/RoE) before testing systems.</li>
+                    <li>Understand local and international laws (e.g., GDPR, Computer Misuse Acts).</li>
+                    <li>Responsible disclosure: report vulnerabilities privately to owners with remediation timeline.</li>
+                    <li>Respect privacy of users and data minimization during investigations.</li>
+                </ul>
+            </section>
+
+            <section id="career">
+                <h2>9. Careers & Certifications</h2>
+                <ul>
+                    <li>Entry roles: SOC Analyst, Junior Penetration Tester, Security Engineer.</li>
+                    <li>Certifications (common): CompTIA Security+, CEH (ethical hacking overview), OSCP (hands-on penetration testing), CISSP (senior security management).</li>
+                    <li>Practical experience via labs, open-source contribution, and bug-bounty programs (legal platforms only).</li>
+                </ul>
+            </section>
+
+            <section id="learning">
+                <h2>10. Learning Path & Resources</h2>
+                <p>Suggested progressive learning path:</p>
+                <ol>
+                    <li>Foundations: networking (TCP/IP), OS internals (Linux, Windows), basic scripting (Python).</li>
+                    <li>Security fundamentals: cryptography basics, authentication, access control.</li>
+                    <li>Hands-on labs: TryHackMe, Hack The Box, OWASP Juice Shop.</li>
+                    <li>Advanced topics: malware analysis, reverse engineering, exploit development (study only in legal lab contexts).</li>
+                </ol>
+                <p>Recommended legal resources:</p>
+                <ul>
+                    <li>OWASP (Open Web Application Security Project) — guides and projects.</li>
+                    <li>TryHackMe / Hack The Box — beginner to advanced legal labs.</li>
+                    <li>Official tool documentation and vendor security advisories.</li>
+                </ul>
+            </section>
+
+            <section id="best">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Get explicit written permission before any testing.</li>
+                    <li>Practice in isolated, controlled labs only.</li>
+                    <li>Document findings clearly and provide actionable remediation steps.</li>
+                    <li>Keep learning and updating skills — security is constantly evolving.</li>
+                    <li>Adopt a strong ethical mindset and comply with laws and company policies.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+
+        window.showSection = function (id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if(sec) sec.classList.add('active');
+}
+
+document.getElementById("downloadNotes").addEventListener("click", ()=>{
+  const title = document.querySelector('main h1')?.innerText || 'Tutorial';
+  const nodes = document.querySelectorAll('main section');
+  const lines = [title, ''];
+  nodes.forEach(sec => {
+    const h = sec.querySelector('h2')?.innerText || sec.id;
+    lines.push('=== ' + h + ' ===');
+    sec.querySelectorAll('p, pre, li').forEach(n => {
+      if (n.tagName.toLowerCase() === 'li') lines.push('- ' + n.innerText.trim());
+      else lines.push(n.innerText.trim());
+    });
+    lines.push('');
+  });
+  const blob = new Blob([lines.join('\n')], {type:"text/plain;charset=utf-8"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "Cybersecurity_Ethical_Hacking_Notes.txt";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+});
+    </script>
+
+</body>
+</html>

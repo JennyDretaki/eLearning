@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C# Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to C#</button>
+            <button onclick="showSection('setup')">2. Setting Up Environment</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables and Data Types</button>
+            <button onclick="showSection('operators')">5. Operators</button>
+            <button onclick="showSection('conditionals')">6. Conditional Statements</button>
+            <button onclick="showSection('loops')">7. Loops</button>
+            <button onclick="showSection('methods')">8. Methods and Parameters</button>
+            <button onclick="showSection('oop')">9. Object-Oriented Programming</button>
+            <button onclick="showSection('collections')">10. Arrays & Collections</button>
+            <button onclick="showSection('errorhandling')">11. Error Handling</button>
+            <button onclick="showSection('advanced')">12. Advanced Topics</button>
+            <button onclick="showSection('nextsteps')">13. Next Steps</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>C# — Complete Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to C#</h2>
+                <p><b>C# (pronounced “C-Sharp”)</b> is a modern, object-oriented programming language developed by Microsoft. It’s widely used for building Windows applications, web services, APIs, games (via Unity), and more.</p>
+                <p>C# runs on the <b>.NET framework</b> (or .NET Core / .NET 8), providing a powerful runtime and huge standard library.</p>
+                <ul>
+                    <li>Created by Microsoft in early 2000s.</li>
+                    <li>Supports OOP: classes, inheritance, polymorphism, encapsulation.</li>
+                    <li>Used in enterprise systems, Unity game development, and cloud APIs.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setting Up the Environment</h2>
+                <p>To write and run C# code, install:</p>
+                <ul>
+                    <li><b>Visual Studio</b> (recommended full IDE) — includes compiler and debugger.</li>
+                    <li><b>Visual Studio Code</b> + <i>C# extension</i> for a lightweight option.</li>
+                    <li><b>.NET SDK</b> (https://dotnet.microsoft.com/download) — for command-line builds.</li>
+                </ul>
+                <p>To verify your setup, open a terminal and run:</p>
+                <pre>dotnet --version</pre>
+                <p>To create and run a console app:</p>
+                <pre>
+                    dotnet new console -o MyApp
+                    cd MyApp
+                    dotnet run
+                </pre>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    using System;
+
+                    class Program
+                    {
+                        static void Main(string[] args)
+                        {
+                            Console.WriteLine("Hello, World!");
+                        }
+                    }
+                </pre>
+                <p>💡 Explanation:</p>
+                <ul>
+                    <li><code>using System;</code> — imports the System namespace (for Console class).</li>
+                    <li><code>class Program</code> — defines a class (entry point).</li>
+                    <li><code>Main()</code> — main method, where execution starts.</li>
+                    <li><code>Console.WriteLine()</code> — prints text to console.</li>
+                </ul>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables and Data Types</h2>
+                <pre>
+                    int age = 25;
+                    double price = 19.99;
+                    string name = "Alice";
+                    bool isStudent = true;
+                    char grade = 'A';
+                </pre>
+                <p>Common Data Types:</p>
+                <ul>
+                    <li><b>int</b> — integer numbers</li>
+                    <li><b>double</b> — decimal numbers</li>
+                    <li><b>string</b> — text</li>
+                    <li><b>bool</b> — true/false</li>
+                    <li><b>char</b> — single character</li>
+                </ul>
+                <pre>
+                    Console.WriteLine($"Name: {name}, Age: {age}");
+                </pre>
+            </section>
+
+            <section id="operators">
+                <h2>5. Operators</h2>
+                <p>Arithmetic operators:</p>
+                <pre>+, -, *, /, %</pre>
+                <p>Comparison:</p>
+                <pre>==, !=, &lt;, &gt;, &lt;=, &gt;=</pre>
+                <p>Logical:</p>
+                <pre>&amp;&amp;, ||, !</pre>
+            </section>
+
+            <section id="conditionals">
+                <h2>6. Conditional Statements</h2>
+                <pre>
+                    int age = 18;
+
+                    if (age >= 18)
+                    {
+                        Console.WriteLine("You are an adult.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You are underage.");
+                    }
+                </pre>
+                <p>Switch example:</p>
+                <pre>
+                    int day = 3;
+                    switch(day)
+                    {
+                        case 1: Console.WriteLine("Monday"); break;
+                        case 2: Console.WriteLine("Tuesday"); break;
+                        default: Console.WriteLine("Other day"); break;
+                    }
+                </pre>
+            </section>
+
+            <section id="loops">
+                <h2>7. Loops</h2>
+                <p><b>For loop:</b></p>
+                <pre>
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Console.WriteLine($"Count: {i}");
+                    }
+                </pre>
+                <p><b>While loop:</b></p>
+                <pre>
+                    int x = 0;
+                    while (x < 3)
+                    {
+                        Console.WriteLine(x);
+                        x++;
+                    }
+                </pre>
+            </section>
+
+            <section id="methods">
+                <h2>8. Methods and Parameters</h2>
+                <pre>
+                    static void Greet(string name)
+                    {
+                        Console.WriteLine($"Hello, {name}!");
+                    }
+
+                    Greet("Alice");
+                </pre>
+                <p><b>Return values:</b></p>
+                <pre>
+                    static int Add(int a, int b)
+                    {
+                        return a + b;
+                    }
+
+                    int result = Add(5, 7);
+                    Console.WriteLine(result);
+                </pre>
+            </section>
+
+            <section id="oop">
+                <h2>9. Object-Oriented Programming (OOP)</h2>
+                <pre>
+                    class Person
+                    {
+                        public string Name;
+                        public int Age;
+
+                        public void Speak()
+                        {
+                            Console.WriteLine($"Hi, I'm {Name} and I'm {Age} years old.");
+                        }
+                    }
+
+                    Person p = new Person();
+                    p.Name = "Alice";
+                    p.Age = 25;
+                    p.Speak();
+                </pre>
+                <p>Includes four key principles:</p>
+                <ul>
+                    <li><b>Encapsulation:</b> Protecting data inside classes.</li>
+                    <li><b>Inheritance:</b> Derive new classes from existing ones.</li>
+                    <li><b>Polymorphism:</b> Override or overload methods for flexibility.</li>
+                    <li><b>Abstraction:</b> Hide unnecessary details.</li>
+                </ul>
+            </section>
+
+            <section id="collections">
+                <h2>10. Arrays and Collections</h2>
+                <p><b>Arrays:</b></p>
+                <pre>
+                    int[] numbers = {1, 2, 3, 4};
+                    Console.WriteLine(numbers[0]);
+                </pre>
+                <p><b>Lists:</b></p>
+                <pre>
+                    using System.Collections.Generic;
+
+                    List&lt;string&gt; names = new List&lt;string&gt;();
+                    names.Add("Alice");
+                    names.Add("Bob");
+
+                    foreach(string name in names)
+                    {
+                        Console.WriteLine(name);
+                    }
+                </pre>
+            </section>
+
+            <section id="errorhandling">
+                <h2>11. Error Handling</h2>
+                <pre>
+                    try
+                    {
+                        int result = 10 / 0;
+                    }
+                    catch (DivideByZeroException ex)
+                    {
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
+                    finally
+                    {
+                        Console.WriteLine("Execution complete.");
+                    }
+                </pre>
+            </section>
+
+            <section id="advanced">
+                <h2>12. Advanced Topics</h2>
+                <ul>
+                    <li><b>LINQ</b> — Query data with SQL-like syntax inside C#.</li>
+                    <li><b>Async/Await</b> — Handle asynchronous operations.</li>
+                    <li><b>Delegates & Events</b> — Build callback-based designs.</li>
+                    <li><b>Generics</b> — Write reusable and type-safe code.</li>
+                    <li><b>File I/O</b> — Read and write files using <code>System.IO</code>.</li>
+                </ul>
+            </section>
+
+            <section id="nextsteps">
+                <h2>13. Next Steps</h2>
+                <ul>
+                    <li>Learn .NET Core Web APIs using ASP.NET.</li>
+                    <li>Explore Entity Framework for database access.</li>
+                    <li>Practice with Unity (for game dev) or MAUI (for cross-platform apps).</li>
+                    <li>Host projects on GitHub and test with Postman.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+  window.showSection = function(id) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+  };
+
+  document.getElementById("downloadNotes").addEventListener("click", () => {
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "CSharp_Tutorial_Notes.txt";
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(link.href);
+      link.remove();
+    }, 500);
+  });
+    </script>
+</body>
+</html>

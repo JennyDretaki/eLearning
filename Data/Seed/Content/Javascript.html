@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction</button>
+            <button onclick="showSection('setup')">2. Setup & Environment</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables & Data Types</button>
+            <button onclick="showSection('operators')">5. Operators</button>
+            <button onclick="showSection('control')">6. Control Flow</button>
+            <button onclick="showSection('functions')">7. Functions</button>
+            <button onclick="showSection('objects')">8. Objects & Arrays</button>
+            <button onclick="showSection('dom')">9. DOM Manipulation</button>
+            <button onclick="showSection('async')">10. Async JavaScript</button>
+            <button onclick="showSection('best')">11. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>JavaScript — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction</h2>
+                <p>JavaScript is a lightweight, interpreted programming language primarily used to make web pages interactive.</p>
+                <ul>
+                    <li>Originally created in 1995 by Brendan Eich.</li>
+                    <li>Runs in the browser and on servers (Node.js).</li>
+                    <li>Core technologies of the web: HTML, CSS, and JavaScript.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Environment</h2>
+                <pre>
+                    # Run in browser console:
+                    console.log("Hello JavaScript");
+
+                    # Or install Node.js:
+                    https://nodejs.org
+
+                    # Run in terminal:
+                    node script.js
+                </pre>
+                <p>Use editors like VS Code or WebStorm for best experience.</p>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    console.log("Hello, JS!");
+                    // Single-line comment
+                    /*
+                      Multi-line comment
+                    */
+                </pre>
+                <ul>
+                    <li>Statements end with semicolons (optional but recommended).</li>
+                    <li>Case-sensitive and dynamically typed.</li>
+                </ul>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables & Data Types</h2>
+                <pre>
+                    let age = 25;           // block-scoped variable
+                    const name = "Alice";   // constant
+                    var city = "Paris";     // function-scoped
+
+                    // Data types:
+                    string, number, boolean, object, undefined, null, symbol, bigint
+                </pre>
+                <p>Use <code>let</code> and <code>const</code> instead of <code>var</code> for modern code.</p>
+            </section>
+
+            <section id="operators">
+                <h2>5. Operators</h2>
+                <pre>
+                    // Arithmetic: +, -, *, /, %, **
+                    // Comparison: ==, ===, !=, !==, <,>, <=, >=
+                    // Logical: &&, ||, !
+                    // Assignment: =, +=, -=, *=, /=
+                    // Ternary: condition ? value1 : value2
+                </pre>
+                <p>Use <code>===</code> for strict equality (checks both type and value).</p>
+            </section>
+
+            <section id="control">
+                <h2>6. Control Flow</h2>
+                <pre>
+                    if (x > 0) {
+                      console.log("Positive");
+                    } else if (x === 0) {
+                      console.log("Zero");
+                    } else {
+                      console.log("Negative");
+                    }
+
+                    for (let i = 0; i < 5; i++) console.log(i);
+
+                    while (condition) {
+                      // loop body
+                    }
+                </pre>
+            </section>
+
+            <section id="functions">
+                <h2>7. Functions</h2>
+                <pre>
+                    // Traditional
+                    function greet(name) {
+                      return "Hello " + name;
+                    }
+
+                    // Arrow function
+                    const add = (a, b) => a + b;
+
+                    console.log(greet("Alice"));
+                    console.log(add(5, 3));
+                </pre>
+                <p>Arrow functions are concise and lexically bind <code>this</code>.</p>
+            </section>
+
+            <section id="objects">
+                <h2>8. Objects & Arrays</h2>
+                <pre>
+                    // Object
+                    const person = {
+                      name: "Alice",
+                      age: 25,
+                      greet() {
+                        console.log("Hi, I'm " + this.name);
+                      }
+                    };
+                    person.greet();
+
+                    // Array
+                    const fruits = ["Apple", "Banana", "Cherry"];
+                    fruits.push("Orange");
+                    fruits.forEach(f => console.log(f));
+                </pre>
+            </section>
+
+            <section id="dom">
+                <h2>9. DOM Manipulation</h2>
+                <pre>
+                    document.getElementById("demo").innerText = "Updated!";
+                    document.querySelector(".box").style.color = "cyan";
+                    document.createElement("div");
+                </pre>
+                <p>JavaScript can dynamically update HTML and CSS in real time.</p>
+            </section>
+
+            <section id="async">
+                <h2>10. Async JavaScript</h2>
+                <pre>
+                    // Callback
+                    setTimeout(() => console.log("Done"), 1000);
+
+                    // Promise
+                    fetch("https://api.example.com/data")
+                      .then(res => res.json())
+                      .then(data => console.log(data))
+                      .catch(err => console.error(err));
+
+                    // Async/Await
+                    async function getData() {
+                      try {
+                        const res = await fetch("https://api.example.com");
+                        const data = await res.json();
+                        console.log(data);
+                      } catch (err) {
+                        console.error(err);
+                      }
+                    }
+                </pre>
+                <p>Async functions simplify working with promises and asynchronous code.</p>
+            </section>
+
+            <section id="best">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Always use <code>const</code> or <code>let</code> instead of <code>var</code>.</li>
+                    <li>Use <code>===</code> for equality checks.</li>
+                    <li>Keep functions small and focused.</li>
+                    <li>Use modern ES6+ features (arrow functions, destructuring).</li>
+                    <li>Handle async errors with <code>try...catch</code>.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+    window.showSection = function (id) {
+        document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+        const sec = document.getElementById(id);
+        if (sec) sec.classList.add('active');
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("downloadNotes");
+        if (btn) {
+            btn.addEventListener("click", () => {
+                const content = document.getElementById("tutorial-content").innerText;
+                const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = "JavaScript_Tutorial_Notes.txt";
+                link.click();
+            });
+        }
+    });
+    </script>
+
+
+</body>
+</html>

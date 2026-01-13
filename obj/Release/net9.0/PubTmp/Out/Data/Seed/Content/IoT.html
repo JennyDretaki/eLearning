@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet of Things (IoT) Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. What is IoT?</button>
+            <button onclick="showSection('components')">2. Core Components</button>
+            <button onclick="showSection('hardware')">3. IoT Hardware</button>
+            <button onclick="showSection('communication')">4. Communication Protocols</button>
+            <button onclick="showSection('cloud')">5. IoT and the Cloud</button>
+            <button onclick="showSection('example')">6. Example IoT Project</button>
+            <button onclick="showSection('security')">7. IoT Security</button>
+            <button onclick="showSection('nextsteps')">8. Next Steps</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Internet of Things (IoT) — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. What is IoT?</h2>
+                <p>The Internet of Things (IoT) refers to the network of physical objects—“things”—that are embedded with sensors, software, and other technologies to connect and exchange data with other devices and systems over the Internet.</p>
+                <p>Examples include smart home devices, connected cars, wearable tech, and industrial sensors.</p>
+            </section>
+
+            <section id="components">
+                <h2>2. Core Components of IoT</h2>
+                <ul>
+                    <li><b>Sensors/Devices:</b> Collect data from the environment.</li>
+                    <li><b>Connectivity:</b> Sends collected data to other devices or servers.</li>
+                    <li><b>Data Processing:</b> Processes data and makes decisions.</li>
+                    <li><b>User Interface:</b> Allows users to interact with the IoT system.</li>
+                </ul>
+            </section>
+
+            <section id="hardware">
+                <h2>3. IoT Hardware</h2>
+                <p>IoT devices rely on small, low-power hardware boards and sensors. Common ones include:</p>
+                <ul>
+                    <li>🟢 <b>Raspberry Pi</b> — a mini-computer for IoT gateways and data processing</li>
+                    <li>🔵 <b>Arduino</b> — microcontroller for basic sensor-based IoT projects</li>
+                    <li>🟣 <b>ESP8266 / ESP32</b> — Wi-Fi-enabled microcontrollers for cloud IoT</li>
+                    <li>🟡 <b>Sensors</b> — temperature, humidity, light, proximity, etc.</li>
+                </ul>
+                <pre>
+                    // Example: Reading temperature using DHT11 sensor (Arduino)
+                    #include <DHT.h>
+                    #define DHTPIN 2
+                    #define DHTTYPE DHT11
+
+                    DHT dht(DHTPIN, DHTTYPE);
+
+                    void setup() {
+                      Serial.begin(9600);
+                      dht.begin();
+                    }
+
+                    void loop() {
+                      float temp = dht.readTemperature();
+                      Serial.println(temp);
+                      delay(2000);
+                    }
+                </pre>
+            </section>
+
+            <section id="communication">
+                <h2>4. IoT Communication Protocols</h2>
+                <p>IoT devices use various protocols to communicate:</p>
+                <ul>
+                    <li><b>Wi-Fi:</b> Common for home IoT devices.</li>
+                    <li><b>Bluetooth / BLE:</b> Short-range communication.</li>
+                    <li><b>MQTT:</b> Lightweight protocol ideal for IoT messaging.</li>
+                    <li><b>HTTP / HTTPS:</b> Standard web communication.</li>
+                    <li><b>LoRaWAN:</b> Long-range, low-power for industrial IoT.</li>
+                </ul>
+                <pre>
+                    // Example: MQTT message using Python
+                    import paho.mqtt.client as mqtt
+
+                    client = mqtt.Client()
+                    client.connect("broker.hivemq.com", 1883)
+                    client.publish("iot/sensor/temp", "25.4°C")
+                    client.disconnect()
+                </pre>
+            </section>
+
+            <section id="cloud">
+                <h2>5. IoT and the Cloud</h2>
+                <p>IoT devices often send data to cloud platforms for storage, analytics, and visualization.</p>
+                <ul>
+                    <li><b>AWS IoT Core</b></li>
+                    <li><b>Azure IoT Hub</b></li>
+                    <li><b>Google Cloud IoT</b></li>
+                    <li><b>ThingSpeak</b> (great for hobby projects)</li>
+                </ul>
+                <p>Cloud integration enables dashboards, alerts, and AI-based data analysis.</p>
+            </section>
+
+            <section id="example">
+                <h2>6. Example IoT Project</h2>
+                <p><b>Smart Temperature Monitor:</b></p>
+                <p>This project uses a DHT11 sensor and an ESP8266 to send temperature data to ThingSpeak.</p>
+                <pre>
+                    // Example: ESP8266 IoT temperature logger
+                    #include <ESP8266WiFi.h>
+                    #include "DHT.h"
+
+                    #define DHTPIN 2
+                    #define DHTTYPE DHT11
+                    DHT dht(DHTPIN, DHTTYPE);
+
+                    const char* ssid = "YourWiFi";
+                    const char* password = "YourPassword";
+                    const char* server = "api.thingspeak.com";
+                    String apiKey = "YOUR_API_KEY";
+
+                    WiFiClient client;
+
+                    void setup() {
+                      Serial.begin(115200);
+                      WiFi.begin(ssid, password);
+                      dht.begin();
+                    }
+
+                    void loop() {
+                      float temp = dht.readTemperature();
+                      if (client.connect(server, 80)) {
+                        String url = "/update?api_key=" + apiKey + "&field1=" + String(temp);
+                        client.print(String("GET ") + url + " HTTP/1.1\r\nHost: " + server + "\r\n\r\n");
+                      }
+                      delay(20000);
+                    }
+                </pre>
+            </section>
+
+            <section id="security">
+                <h2>7. IoT Security</h2>
+                <p>IoT security is critical since devices often connect directly to the internet.</p>
+                <ul>
+                    <li>Use encrypted protocols (HTTPS, TLS, MQTT over SSL)</li>
+                    <li>Regularly update firmware</li>
+                    <li>Authenticate all devices</li>
+                    <li>Limit data access through firewalls and permissions</li>
+                </ul>
+            </section>
+
+            <section id="nextsteps">
+                <h2>8. Next Steps</h2>
+                <ul>
+                    <li>Explore IoT cloud dashboards (ThingSpeak, Blynk, Adafruit IO)</li>
+                    <li>Learn about edge computing for faster local processing</li>
+                    <li>Integrate AI/ML models for predictive IoT analytics</li>
+                    <li>Experiment with smart home automation projects</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+  window.showSection = function (id) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+  };
+
+
+  document.getElementById("downloadNotes").addEventListener("click", () => {
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "IoT_Tutorial_Notes.txt";
+    link.click();
+  });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AWS Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to AWS</button>
+            <button onclick="showSection('core')">2. Core Services</button>
+            <button onclick="showSection('iam')">3. Identity & Access Management (IAM)</button>
+            <button onclick="showSection('networking')">4. VPC & Networking</button>
+            <button onclick="showSection('compute')">5. Compute Options (EC2, ECS, Lambda)</button>
+            <button onclick="showSection('storage')">6. Storage Services (S3, EBS, EFS)</button>
+            <button onclick="showSection('db')">7. Databases (RDS, DynamoDB)</button>
+            <button onclick="showSection('serverless')">8. Serverless & Containers</button>
+            <button onclick="showSection('deploy')">9. Deployment & CI/CD</button>
+            <button onclick="showSection('monitoring')">10. Monitoring & Logging</button>
+            <button onclick="showSection('security')">11. Security Best Practices</button>
+            <button onclick="showSection('cost')">12. Cost & Billing</button>
+            <button onclick="showSection('getting')">13. Hands-on: Getting Started</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content" role="main" aria-live="polite">
+            <h1>AWS — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to AWS</h2>
+                <p>Amazon Web Services (AWS) is a cloud platform offering compute, storage, database, networking, analytics, machine learning, and many other services on-demand.</p>
+                <ul>
+                    <li>Launch resources in minutes, pay-as-you-go model.</li>
+                    <li>Global infrastructure: regions and availability zones (AZs).</li>
+                    <li>Used for web hosting, data processing, DevOps, ML, and more.</li>
+                </ul>
+            </section>
+
+            <section id="core">
+                <h2>2. Core Services</h2>
+                <ul>
+                    <li><b>EC2:</b> Virtual machines (instances) with many instance types (CPU, memory, GPU).</li>
+                    <li><b>S3:</b> Object storage — durable, scalable, widely used for static assets and backups.</li>
+                    <li><b>RDS:</b> Managed relational databases (MySQL, PostgreSQL, MariaDB, Oracle, SQL Server).</li>
+                    <li><b>VPC:</b> Virtual Private Cloud — isolated network in AWS.</li>
+                    <li><b>IAM:</b> Identity and Access Management for users, roles, and policies.</li>
+                    <li><b>Lambda:</b> Serverless functions — pay per execution.</li>
+                </ul>
+            </section>
+
+            <section id="iam">
+                <h2>3. Identity & Access Management (IAM)</h2>
+                <p>IAM controls who can do what in your AWS account.</p>
+                <ul>
+                    <li>Use least privilege: grant only needed permissions.</li>
+                    <li>Prefer roles for applications and cross-account access.</li>
+                    <li>Enable MFA for root and privileged users.</li>
+                    <li>Use IAM policies (JSON) and groups for organization.</li>
+                </ul>
+                <pre>
+                    // Example: high-level IAM advice (not actual JSON)
+                    Create role -> attach policy -> assume role from EC2/Lambda or another account
+                </pre>
+            </section>
+
+            <section id="networking">
+                <h2>4. VPC & Networking</h2>
+                <p>VPC provides network isolation and control:</p>
+                <ul>
+                    <li>Subnet types: public (with Internet Gateway), private (no direct Internet access).</li>
+                    <li>Use NAT Gateway/Instances for outbound access from private subnets.</li>
+                    <li>Security Groups (stateful) and Network ACLs (stateless) control traffic.</li>
+                    <li>Peering & Transit Gateway for connecting VPCs and accounts.</li>
+                </ul>
+            </section>
+
+            <section id="compute">
+                <h2>5. Compute Options (EC2, ECS, Lambda)</h2>
+                <ul>
+                    <li><b>EC2:</b> Full control VMs — choose AMIs, instance types, EBS volumes.</li>
+                    <li><b>ECS / EKS:</b> Container orchestration — ECS (Fargate or EC2), EKS (Kubernetes).</li>
+                    <li><b>Lambda:</b> Serverless for event-driven workloads; supports many runtimes.</li>
+                </ul>
+                <p>Choose based on control needs, scaling, and operational overhead.</p>
+            </section>
+
+            <section id="storage">
+                <h2>6. Storage Services (S3, EBS, EFS)</h2>
+                <ul>
+                    <li><b>S3:</b> Object store with versioning, lifecycle policies, and cross-region replication.</li>
+                    <li><b>EBS:</b> Block storage for EC2 (persistent volumes). Snapshots for backups.</li>
+                    <li><b>EFS:</b> Managed NFS for shared file storage across instances.</li>
+                </ul>
+            </section>
+
+            <section id="db">
+                <h2>7. Databases (RDS, DynamoDB)</h2>
+                <ul>
+                    <li><b>RDS:</b> Managed SQL databases — automated backups, Multi-AZ for HA.</li>
+                    <li><b>DynamoDB:</b> Serverless NoSQL with single-digit ms latency at scale.</li>
+                    <li><b>Aurora:</b> MySQL/Postgres-compatible, high-performance managed DB.</li>
+                </ul>
+            </section>
+
+            <section id="serverless">
+                <h2>8. Serverless & Containers</h2>
+                <ul>
+                    <li>Serverless benefits: no servers to manage, automatic scaling, cost efficiency for intermittent workloads.</li>
+                    <li>Containers benefits: predictable runtimes, portability, good for microservices.</li>
+                    <li>Use event sources (S3, API Gateway, SQS) to trigger Lambda functions.</li>
+                </ul>
+            </section>
+
+            <section id="deploy">
+                <h2>9. Deployment & CI/CD</h2>
+                <ul>
+                    <li><b>CodeDeploy / Elastic Beanstalk:</b> Managed deployment options for servers and apps.</li>
+                    <li><b>CodePipeline:</b> CI/CD orchestration integrating CodeBuild and CodeDeploy or third-party tools (GitHub Actions, Jenkins).</li>
+                    <li>Infrastructure as Code: CloudFormation / AWS CDK / Terraform for reproducible infra.</li>
+                </ul>
+            </section>
+
+            <section id="monitoring">
+                <h2>10. Monitoring & Logging</h2>
+                <ul>
+                    <li><b>CloudWatch:</b> Metrics, logs, alarms, dashboards.</li>
+                    <li><b>CloudTrail:</b> API activity logging for auditing and compliance.</li>
+                    <li>Centralize logs (CloudWatch Logs, Kinesis, or third-party SIEM) and set meaningful alerts.</li>
+                </ul>
+            </section>
+
+            <section id="security">
+                <h2>11. Security Best Practices</h2>
+                <ul>
+                    <li>Use MFA and avoid long-term access keys; prefer temporary STS credentials.</li>
+                    <li>Encrypt data at rest (KMS) and in transit (TLS).</li>
+                    <li>Use GuardDuty, Inspector, and AWS Config for threat detection and compliance checks.</li>
+                    <li>Segment workloads across accounts using AWS Organizations and SCPs.</li>
+                    <li>Harden AMIs and limit surface area (few open ports, security group least privilege).</li>
+                </ul>
+            </section>
+
+            <section id="cost">
+                <h2>12. Cost & Billing</h2>
+                <ul>
+                    <li>Monitor usage with AWS Cost Explorer and Budgets.</li>
+                    <li>Choose right-sizing (instance types, reserved instances, savings plans) for long-running workloads.</li>
+                    <li>Use lifecycle policies (S3) and tiering to optimize storage costs.</li>
+                </ul>
+            </section>
+
+            <section id="getting">
+                <h2>13. Hands-on: Getting Started</h2>
+                <ol>
+                    <li>Create an AWS account (use billing alerts) and enable MFA.</li>
+                    <li>Install & configure AWS CLI: <code>aws configure</code>.</li>
+                    <li>Launch a small EC2 instance (t2.micro / t3.micro) in a test VPC; SSH using key pair.</li>
+                    <li>Create an S3 bucket and upload a static website object (or host a static site using S3 + CloudFront).</li>
+                    <li>Try a serverless function: create a simple Lambda triggered by S3 upload or API Gateway.</li>
+                    <li>Explore CloudFormation or CDK: create a simple stack to automate the above.</li>
+                </ol>
+                <pre>
+                    # Example: create S3 bucket (AWS CLI)
+                    aws s3 mb s3://my-unique-bucket-name --region us-east-1
+                </pre>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+window.showSection = function(id){
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if(sec) sec.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('downloadNotes');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const title = document.querySelector('main h1')?.innerText || 'AWS Tutorial';
+    const nodes = document.querySelectorAll('main section');
+    const lines = [title, ''];
+    nodes.forEach(sec => {
+      const h = sec.querySelector('h2')?.innerText || sec.id;
+      lines.push('=== ' + h + ' ===');
+      sec.querySelectorAll('p, pre, li, ol').forEach(n => {
+        if (n.tagName.toLowerCase() === 'li') lines.push('- ' + n.innerText.trim());
+        else if (n.tagName.toLowerCase() === 'ol') {
+          n.querySelectorAll('li').forEach((li, idx) => lines.push((idx+1) + '. ' + li.innerText.trim()));
+        } else lines.push(n.innerText.trim());
+      });
+      lines.push('');
+    });
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'AWS_Tutorial_Notes.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+});
+    </script>
+
+</body>
+</html>

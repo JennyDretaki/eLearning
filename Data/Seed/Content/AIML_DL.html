@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI / ML / DL — Complete Beginner to Intermediate Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <div class="nav-buttons">
+                <button onclick="showSection('intro')">1. Introduction</button>
+                <button onclick="showSection('differences')">2. Differences</button>
+                <button onclick="showSection('ai')">3. Artificial Intelligence</button>
+                <button onclick="showSection('ml')">4. Machine Learning</button>
+                <button onclick="showSection('dl')">5. Deep Learning</button>
+                <button onclick="showSection('workflow')">6. Workflow</button>
+                <button onclick="showSection('algorithms')">7. Algorithms</button>
+                <button onclick="showSection('tools')">8. Tools</button>
+                <button onclick="showSection('applications')">9. Applications</button>
+                <button onclick="showSection('future')">10. Future & Ethics</button>
+                <button onclick="showSection('best')">11. Best Practices</button>
+            </div>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>AI / ML / DL — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction</h2>
+                <p>
+                    Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) are interconnected fields within computer science that aim to create intelligent systems capable of learning and decision-making.
+                </p>
+                <ul>
+                    <li><b>AI</b> is the broad concept of machines that can perform tasks that normally require human intelligence.</li>
+                    <li><b>ML</b> is a subset of AI that allows machines to learn from data without being explicitly programmed.</li>
+                    <li><b>DL</b> is a further subset of ML that uses neural networks to simulate human-like learning processes.</li>
+                </ul>
+            </section>
+
+            <section id="differences">
+                <h2>2. Differences Between AI, ML, and DL</h2>
+                <table>
+                    <tr><th>Aspect</th><th>AI</th><th>ML</th><th>DL</th></tr>
+                    <tr><td>Definition</td><td>Machines mimicking human intelligence</td><td>Learning from data</td><td>Learning with neural networks</td></tr>
+                    <tr><td>Data Dependency</td><td>Can use rules</td><td>Requires structured data</td><td>Handles unstructured data</td></tr>
+                    <tr><td>Hardware Needs</td><td>Low</td><td>Moderate</td><td>High (GPUs)</td></tr>
+                    <tr><td>Human Intervention</td><td>High</td><td>Medium</td><td>Low (automated feature learning)</td></tr>
+                    <tr><td>Example</td><td>Chess-playing bot</td><td>Spam filter</td><td>Self-driving car</td></tr>
+                </table>
+            </section>
+
+            <section id="ai">
+                <h2>3. Artificial Intelligence (AI)</h2>
+                <p>AI focuses on creating systems that think and act like humans. It includes reasoning, problem-solving, language understanding, and perception.</p>
+                <ul>
+                    <li><b>Weak AI:</b> Performs specific tasks (e.g., Siri, Alexa).</li>
+                    <li><b>Strong AI:</b> Aims to replicate full human cognition (still theoretical).</li>
+                </ul>
+                <pre>
+// Example: AI Rule-based System (Pseudocode)
+if temperature > 30:
+    turn_on("air_conditioner")
+else:
+    turn_off("air_conditioner")
+                </pre>
+            </section>
+
+            <section id="ml">
+                <h2>4. Machine Learning (ML)</h2>
+                <p>ML allows systems to automatically improve with experience. It uses algorithms to find patterns in data.</p>
+                <ul>
+                    <li><b>Supervised Learning:</b> Uses labeled data (e.g., image classification).</li>
+                    <li><b>Unsupervised Learning:</b> Finds hidden structures (e.g., clustering).</li>
+                    <li><b>Reinforcement Learning:</b> Learns through rewards and punishments.</li>
+                </ul>
+                <pre>
+// Example: Linear Regression (Pseudocode)
+train_model(X_train, y_train)
+predict(y_test)
+evaluate(accuracy)
+                </pre>
+            </section>
+
+            <section id="dl">
+                <h2>5. Deep Learning (DL)</h2>
+                <p>DL is based on artificial neural networks with multiple layers that can automatically learn complex features.</p>
+                <pre>
+// Example: Deep Neural Network (Concept)
+Input → Hidden Layer 1 → Hidden Layer 2 → Output
+                </pre>
+                <ul>
+                    <li>Uses frameworks like TensorFlow, PyTorch, Keras.</li>
+                    <li>Excellent for images, audio, and natural language.</li>
+                </ul>
+            </section>
+
+            <section id="workflow">
+                <h2>6. Typical AI/ML Workflow</h2>
+                <ol>
+                    <li>Define problem</li>
+                    <li>Collect and preprocess data</li>
+                    <li>Choose algorithm/model</li>
+                    <li>Train and validate</li>
+                    <li>Test and deploy</li>
+                    <li>Monitor and improve</li>
+                </ol>
+            </section>
+
+            <section id="algorithms">
+                <h2>7. Common Algorithms</h2>
+                <ul>
+                    <li>Linear/Logistic Regression</li>
+                    <li>Decision Trees</li>
+                    <li>K-Means Clustering</li>
+                    <li>Support Vector Machines (SVM)</li>
+                    <li>Convolutional Neural Networks (CNNs)</li>
+                    <li>Recurrent Neural Networks (RNNs)</li>
+                </ul>
+            </section>
+
+            <section id="tools">
+                <h2>8. Tools & Frameworks</h2>
+                <ul>
+                    <li><b>Python Libraries:</b> scikit-learn, pandas, numpy, matplotlib</li>
+                    <li><b>Deep Learning:</b> TensorFlow, PyTorch, Keras</li>
+                    <li><b>Data Tools:</b> Jupyter, Google Colab</li>
+                </ul>
+            </section>
+
+            <section id="applications">
+                <h2>9. Real-World Applications</h2>
+                <ul>
+                    <li>Healthcare (diagnosis prediction)</li>
+                    <li>Finance (fraud detection)</li>
+                    <li>Marketing (customer segmentation)</li>
+                    <li>Autonomous vehicles</li>
+                    <li>Language translation (NLP)</li>
+                    <li>Recommendation systems</li>
+                </ul>
+            </section>
+
+            <section id="future">
+                <h2>10. Future & Ethics</h2>
+                <ul>
+                    <li>Explainable AI (transparency in decisions)</li>
+                    <li>Bias and fairness concerns</li>
+                    <li>Data privacy and security</li>
+                    <li>AI in governance and law</li>
+                </ul>
+            </section>
+
+            <section id="best">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Understand the data before modeling.</li>
+                    <li>Use cross-validation for better accuracy.</li>
+                    <li>Regularize models to prevent overfitting.</li>
+                    <li>Monitor deployed models continuously.</li>
+                    <li>Be ethical with data usage.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        window.showSection = function(id){
+          document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+          const sec = document.getElementById(id);
+          if(sec) {
+            sec.classList.add('active');
+            // Smooth scroll to main content on smaller screens
+            if (window.innerWidth <= 900) {
+              document.getElementById('tutorial-content').scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }
+
+        document.getElementById("downloadNotes").addEventListener("click", ()=>{
+          const content = document.getElementById("tutorial-content").innerText;
+          const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = "AI_ML_DL_Tutorial_Notes.txt";
+          link.click();
+        });
+    </script>
+
+</body>
+</html>

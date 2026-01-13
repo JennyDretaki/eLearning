@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kali Linux & Ubuntu — Beginner to Intermediate Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to Linux</button>
+            <button onclick="showSection('differences')">2. Kali vs Ubuntu</button>
+            <button onclick="showSection('install')">3. Installation & Setup</button>
+            <button onclick="showSection('commands')">4. Essential Linux Commands</button>
+            <button onclick="showSection('users')">5. User & Permission Management</button>
+            <button onclick="showSection('packages')">6. Package Management (APT)</button>
+            <button onclick="showSection('networking')">7. Networking Tools</button>
+            <button onclick="showSection('kaliTools')">8. Kali Linux Security Tools</button>
+            <button onclick="showSection('ubuntuApps')">9. Ubuntu Software & Use Cases</button>
+            <button onclick="showSection('customize')">10. System Customization</button>
+            <button onclick="showSection('security')">11. Linux Security & Updates</button>
+            <button onclick="showSection('practice')">12. Hands-On Practice</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Kali Linux & Ubuntu — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to Linux</h2>
+                <p>Linux is an open-source operating system based on the Unix architecture. It is known for its stability, flexibility, and strong community support.</p>
+                <ul>
+                    <li>Open-source and customizable.</li>
+                    <li>Used for servers, cybersecurity, IoT, and software development.</li>
+                    <li>Comes in many distributions (distros) — Kali Linux and Ubuntu are two popular examples.</li>
+                </ul>
+            </section>
+
+            <section id="differences">
+                <h2>2. Kali vs Ubuntu</h2>
+                <ul>
+                    <li><b>Kali Linux:</b> Designed for ethical hacking, penetration testing, and digital forensics. Comes preloaded with security tools.</li>
+                    <li><b>Ubuntu:</b> General-purpose distribution suitable for everyday use, development, and servers.</li>
+                    <li><b>Base:</b> Both are based on Debian, but differ in target audience and default configurations.</li>
+                </ul>
+            </section>
+
+            <section id="install">
+                <h2>3. Installation & Setup</h2>
+                <p>Both distros can be installed on bare metal, virtual machines, or dual-boot setups.</p>
+                <pre>
+                    # Ubuntu installation (CLI)
+                    sudo apt update && sudo apt upgrade -y
+
+                    # Kali installation essentials
+                    sudo apt install kali-linux-core -y
+                </pre>
+                <p>Use <b>VirtualBox</b> or <b>VMware</b> for sandboxed environments when testing tools or learning.</p>
+            </section>
+
+            <section id="commands">
+                <h2>4. Essential Linux Commands</h2>
+                <pre>
+                    # File navigation
+                    ls       # list files
+                    cd dir   # change directory
+                    pwd      # print working directory
+
+                    # File operations
+                    cp file1 file2
+                    mv old new
+                    rm file
+
+                    # System info
+                    uname -a
+                    top
+                    df -h
+                </pre>
+            </section>
+
+            <section id="users">
+                <h2>5. User & Permission Management</h2>
+                <pre>
+                    # Add a new user
+                    sudo adduser username
+
+                    # Switch user
+                    su username
+
+                    # Change permissions
+                    chmod 755 file
+                    chown user:group file
+                </pre>
+                <p>In Kali, many tools require root privileges — in Ubuntu, use <code>sudo</code> for security.</p>
+            </section>
+
+            <section id="packages">
+                <h2>6. Package Management (APT)</h2>
+                <p>APT (Advanced Package Tool) manages software installation in both Ubuntu and Kali.</p>
+                <pre>
+                    sudo apt update
+                    sudo apt install nmap
+                    sudo apt remove package-name
+                    sudo apt autoremove
+                </pre>
+                <p>Keep systems updated regularly to patch vulnerabilities and maintain stability.</p>
+            </section>
+
+            <section id="networking">
+                <h2>7. Networking Tools</h2>
+                <ul>
+                    <li><code>ping</code> — test connectivity</li>
+                    <li><code>ifconfig / ip a</code> — view IP addresses</li>
+                    <li><code>netstat / ss</code> — show active network connections</li>
+                    <li><code>nmap</code> — scan open ports (Kali comes with this preinstalled)</li>
+                </ul>
+            </section>
+
+            <section id="kaliTools">
+                <h2>8. Kali Linux Security Tools</h2>
+                <ul>
+                    <li><b>Nmap:</b> Network scanning</li>
+                    <li><b>Wireshark:</b> Packet analysis</li>
+                    <li><b>Metasploit:</b> Exploitation framework</li>
+                    <li><b>Burp Suite:</b> Web vulnerability testing</li>
+                    <li><b>Hydra:</b> Password brute-forcing</li>
+                </ul>
+                <p>These tools are used in ethical hacking and cybersecurity research — always use them legally.</p>
+            </section>
+
+            <section id="ubuntuApps">
+                <h2>9. Ubuntu Software & Use Cases</h2>
+                <ul>
+                    <li>Office & productivity: LibreOffice, Thunderbird, GIMP</li>
+                    <li>Development: VS Code, Git, Docker</li>
+                    <li>Server administration: Apache, Nginx, MySQL</li>
+                </ul>
+                <p>Ubuntu focuses on usability, stability, and compatibility with cloud and enterprise systems.</p>
+            </section>
+
+            <section id="customize">
+                <h2>10. System Customization</h2>
+                <ul>
+                    <li>Change themes with GNOME Tweaks.</li>
+                    <li>Edit startup services with <code>systemctl</code>.</li>
+                    <li>Use aliases for faster terminal commands.</li>
+                </ul>
+                <pre>
+                    alias ll='ls -la'
+                    alias gs='git status'
+                </pre>
+            </section>
+
+            <section id="security">
+                <h2>11. Linux Security & Updates</h2>
+                <ul>
+                    <li>Use <code>ufw</code> firewall: <code>sudo ufw enable</code></li>
+                    <li>Install fail2ban to protect SSH from brute-force attacks.</li>
+                    <li>Update regularly with <code>sudo apt upgrade</code>.</li>
+                    <li>Encrypt disks and backups for data safety.</li>
+                </ul>
+            </section>
+
+            <section id="practice">
+                <h2>12. Hands-On Practice</h2>
+                <ol>
+                    <li>Install Kali and Ubuntu on a virtual machine.</li>
+                    <li>Try scanning your own network with <code>nmap</code>.</li>
+                    <li>Write a Bash script to automate updates.</li>
+                    <li>Secure SSH and configure a web server.</li>
+                </ol>
+                <pre>
+                    #!/bin/bash
+                    echo "Updating system..."
+                    sudo apt update && sudo apt upgrade -y
+                    echo "All done!"
+                </pre>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+window.showSection = function(id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.add('active');
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('downloadNotes');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const title = document.querySelector('main h1')?.innerText || 'Linux Tutorial';
+    const sections = document.querySelectorAll('main section');
+    let text = title + '\n\n';
+    sections.forEach(sec => {
+      const header = sec.querySelector('h2')?.innerText || sec.id;
+      text += '=== ' + header + ' ===\n';
+      sec.querySelectorAll('p, pre, li').forEach(n => text += n.innerText + '\n');
+      text += '\n';
+    });
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Kali_Ubuntu_Tutorial_Notes.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+});
+    </script>
+
+</body>
+</html>

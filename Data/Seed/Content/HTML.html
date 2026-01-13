@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to HTML</button>
+            <button onclick="showSection('structure')">2. Basic Structure</button>
+            <button onclick="showSection('elements')">3. Common Elements</button>
+            <button onclick="showSection('attributes')">4. Attributes</button>
+            <button onclick="showSection('links')">5. Links & Images</button>
+            <button onclick="showSection('lists')">6. Lists & Tables</button>
+            <button onclick="showSection('forms')">7. Forms</button>
+            <button onclick="showSection('semantic')">8. Semantic HTML</button>
+            <button onclick="showSection('media')">9. Multimedia</button>
+            <button onclick="showSection('best')">10. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>HTML — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to HTML</h2>
+                <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It provides structure and content for the web.</p>
+                <ul>
+                    <li>Defines headings, paragraphs, links, images, lists, and more.</li>
+                    <li>Works with CSS and JavaScript to style and add functionality.</li>
+                    <li>HTML5 is the latest version with semantic and multimedia support.</li>
+                </ul>
+            </section>
+
+            <section id="structure">
+                <h2>2. Basic Structure</h2>
+                <pre>
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html lang="en"&gt;
+                    &lt;head&gt;
+                        &lt;meta charset="UTF-8"&gt;
+                        &lt;title&gt;Page Title&lt;/title&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;Hello, World!&lt;/h1&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                </pre>
+            </section>
+
+            <section id="elements">
+                <h2>3. Common Elements</h2>
+                <pre>
+                    &lt;p&gt;Paragraph&lt;/p&gt;
+                    &lt;h1&gt;Heading 1&lt;/h1&gt;
+                    &lt;h2&gt;Heading 2&lt;/h2&gt;
+                    &lt;div&gt;Division&lt;/div&gt;
+                    &lt;span&gt;Inline&lt;/span&gt;
+                </pre>
+            </section>
+
+            <section id="attributes">
+                <h2>4. Attributes</h2>
+                <pre>
+                    &lt;a href="https://example.com"&gt;Link&lt;/a&gt;
+                    &lt;img src="image.jpg" alt="Description"&gt;
+                    &lt;input type="text" placeholder="Enter name"&gt;
+                </pre>
+                <p>Attributes provide additional information about elements.</p>
+            </section>
+
+            <section id="links">
+                <h2>5. Links & Images</h2>
+                <pre>
+                    &lt;a href="https://openai.com"&gt;OpenAI&lt;/a&gt;
+                    &lt;img src="logo.png" alt="OpenAI Logo"&gt;
+                </pre>
+            </section>
+
+            <section id="lists">
+                <h2>6. Lists & Tables</h2>
+                <pre>
+                    &lt;ul&gt;
+                      &lt;li&gt;Item 1&lt;/li&gt;
+                      &lt;li&gt;Item 2&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;table&gt;
+                      &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;
+                      &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;/tr&gt;
+                    &lt;/table&gt;
+                </pre>
+            </section>
+
+            <section id="forms">
+                <h2>7. Forms</h2>
+                <pre>
+                    &lt;form action="/submit" method="post"&gt;
+                      &lt;input type="text" name="username"&gt;
+                      &lt;input type="submit" value="Submit"&gt;
+                    &lt;/form&gt;
+                </pre>
+            </section>
+
+            <section id="semantic">
+                <h2>8. Semantic HTML</h2>
+                <p>Semantic tags give meaning to content:</p>
+                <pre>
+                    &lt;header&gt;Site Header&lt;/header&gt;
+                    &lt;nav&gt;Navigation&lt;/nav&gt;
+                    &lt;main&gt;Main Content&lt;/main&gt;
+                    &lt;footer&gt;Site Footer&lt;/footer&gt;
+                </pre>
+            </section>
+
+            <section id="media">
+                <h2>9. Multimedia</h2>
+                <pre>
+                &lt;video src="video.mp4" controls&gt;&lt;/video&gt;
+                &lt;audio src="audio.mp3" controls&gt;&lt;/audio&gt;
+                &lt;iframe src="https://example.com"&gt;&lt;/iframe&gt;
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>10. Best Practices</h2>
+                <ul>
+                    <li>Use semantic HTML for better accessibility.</li>
+                    <li>Keep code clean and well-indented.</li>
+                    <li>Always provide alt text for images.</li>
+                    <li>Validate HTML using W3C validator.</li>
+                    <li>Use comments to describe sections of code.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+function showSection(id){
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if(sec) sec.classList.add('active');
+}
+
+document.getElementById("downloadNotes").addEventListener("click", ()=>{
+  const content = document.getElementById("tutorial-content").innerText;
+  const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "HTML_Tutorial_Notes.txt";
+  link.click();
+});
+    </script>
+
+</body>
+</html>

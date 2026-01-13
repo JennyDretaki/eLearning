@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C Tutorial — Detailed Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to C</button>
+            <button onclick="showSection('setup')">2. Setup & Tools</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables & Data Types</button>
+            <button onclick="showSection('operators')">5. Operators</button>
+            <button onclick="showSection('control')">6. Control Flow</button>
+            <button onclick="showSection('functions')">7. Functions</button>
+            <button onclick="showSection('arrays')">8. Arrays & Strings</button>
+            <button onclick="showSection('pointers')">9. Pointers</button>
+            <button onclick="showSection('structs')">10. Structs & Enums</button>
+            <button onclick="showSection('files')">11. File I/O</button>
+            <button onclick="showSection('memory')">12. Dynamic Memory</button>
+            <button onclick="showSection('preprocessor')">13. Preprocessor & Macros</button>
+            <button onclick="showSection('best')">14. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>C — Detailed Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to C</h2>
+                <p>C is a general-purpose, procedural programming language developed by Dennis Ritchie at Bell Labs in the 1970s.</p>
+                <ul>
+                    <li>Foundation for modern languages like C++, C#, and Java.</li>
+                    <li>Compiled for speed and efficiency.</li>
+                    <li>Supports structured and modular programming.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Tools</h2>
+                <pre>
+                    // Windows: Visual Studio or MinGW
+                    // Linux: sudo apt install gcc
+                    // macOS: brew install gcc
+                </pre>
+                <p>Compile and run:</p>
+                <pre>gcc hello.c -o hello
+                ./hello</pre>
+                <p>Recommended IDEs: VS Code, Code::Blocks, CLion.</p>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    #include &lt;stdio.h&gt;
+
+                    int main() {
+                        printf("Hello, C!\n");
+                        return 0;
+                    }
+                </pre>
+                <ul>
+                    <li>Every C program starts with <code>main()</code>.</li>
+                    <li>Statements end with semicolons.</li>
+                    <li><code>#include</code> adds libraries.</li>
+                </ul>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables & Data Types</h2>
+                <pre>
+                    int a = 10;
+                    float b = 3.14;
+                    double c = 2.718;
+                    char ch = 'A';
+                    _Bool flag = 1;
+                </pre>
+                <p>Always initialize variables before using them.</p>
+            </section>
+
+            <section id="operators">
+                <h2>5. Operators</h2>
+                <pre>
+                    // Arithmetic: +, -, *, /, %
+                    // Relational: ==, !=, <,>, <=, >=
+                    // Logical: &&, ||, !
+                    // Assignment: =, +=, -=, *=, /=
+                </pre>
+            </section>
+
+            <section id="control">
+                <h2>6. Control Flow</h2>
+                <pre>
+                    if (a > 0) { ... } else { ... }
+
+                    switch (ch) {
+                        case 'A': ...; break;
+                        default: ...;
+                    }
+
+                    for (int i=0; i<10; i++) { ... }
+                                        while (condition) { ... }
+                                        do { ... } while (condition);
+                </pre>
+            </section>
+
+            <section id="functions">
+                <h2>7. Functions</h2>
+                <pre>
+                    int add(int x, int y) {
+                        return x + y;
+                    }
+
+                    int main() {
+                        int sum = add(3, 4);
+                        printf("%d\n", sum);
+                    }
+                </pre>
+            </section>
+
+            <section id="arrays">
+                <h2>8. Arrays & Strings</h2>
+                <pre>
+                    int arr[5] = {1,2,3,4,5};
+                    char str[] = "Hello";
+
+                    printf("%c\n", str[0]); // H
+                </pre>
+            </section>
+
+            <section id="pointers">
+                <h2>9. Pointers</h2>
+                <pre>
+                    int x = 10;
+                    int *ptr = &x;
+
+                    printf("%d\n", *ptr); // 10
+
+                    *ptr = 20;
+                    printf("%d\n", x); // 20
+                 </pre>
+            </section>
+
+            <section id="structs">
+                <h2>10. Structs & Enums</h2>
+                <pre>
+                    struct Point {
+                        int x;
+                        int y;
+                    };
+
+                    enum Color { RED, GREEN, BLUE };
+
+                    struct Point p1 = {10, 20};
+                    enum Color c = RED;
+                </pre>
+            </section>
+
+            <section id="files">
+                <h2>11. File I/O</h2>
+                <pre>
+                    FILE *fp = fopen("data.txt", "w");
+                    fprintf(fp, "Hello File\n");
+                    fclose(fp);
+
+                    fp = fopen("data.txt", "r");
+                    char buffer[100];
+                    fgets(buffer, 100, fp);
+                    fclose(fp);
+                </pre>
+            </section>
+
+            <section id="memory">
+                <h2>12. Dynamic Memory</h2>
+                <pre>
+                    int *arr = malloc(5 * sizeof(int));
+                    if (arr != NULL) {
+                        arr[0] = 10;
+                        free(arr);
+                    }
+                </pre>
+            </section>
+
+            <section id="preprocessor">
+                <h2>13. Preprocessor & Macros</h2>
+                <pre>
+                    #define PI 3.14159
+                    #include <stdio.h>
+
+                    #undef PI
+                 </pre>
+            </section>
+
+            <section id="best">
+                <h2>14. Best Practices</h2>
+                <ul>
+                    <li>Initialize all variables before use.</li>
+                    <li>Always check for <code>NULL</code> in file/memory operations.</li>
+                    <li>Use descriptive names for functions and variables.</li>
+                    <li>Keep code modular and well-commented.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+function showSection(id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.add('active');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("downloadNotes");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const content = document.getElementById("tutorial-content").innerText;
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "C_Tutorial_Detailed_Notes.txt";
+      link.click();
+    });
+  }
+});
+    </script>
+
+</body>
+</html>

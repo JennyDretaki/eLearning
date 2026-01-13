@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to Bootstrap</button>
+            <button onclick="showSection('setup')">2. Setup & Installation</button>
+            <button onclick="showSection('grid')">3. Grid System</button>
+            <button onclick="showSection('components')">4. Components</button>
+            <button onclick="showSection('utilities')">5. Utilities</button>
+            <button onclick="showSection('forms')">6. Forms</button>
+            <button onclick="showSection('navbar')">7. Navbar</button>
+            <button onclick="showSection('modals')">8. Modals</button>
+            <button onclick="showSection('best')">9. Best Practices</button>
+            <button onclick="showSection('resources')">10. Resources</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Bootstrap — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to Bootstrap</h2>
+                <p>Bootstrap is a popular front-end framework for building responsive websites quickly.</p>
+                <ul>
+                    <li>Developed by Twitter engineers.</li>
+                    <li>Includes pre-designed components like buttons, navbars, forms, modals.</li>
+                    <li>Responsive grid system to adapt layouts to any screen size.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Installation</h2>
+                <p>Add Bootstrap via CDN or install via npm:</p>
+                <pre>
+                // CDN
+                &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+                &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+
+                // NPM
+                npm install bootstrap
+                </pre>
+            </section>
+
+            <section id="grid">
+                <h2>3. Grid System</h2>
+                <p>Bootstrap uses a 12-column responsive grid:</p>
+                <pre>
+                &lt;div class="container"&gt;
+                  &lt;div class="row"&gt;
+                    &lt;div class="col-md-6"&gt;Left&lt;/div&gt;
+                    &lt;div class="col-md-6"&gt;Right&lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                </pre>
+                <p>Columns automatically stack on smaller screens.</p>
+            </section>
+
+            <section id="components">
+                <h2>4. Components</h2>
+                <p>Bootstrap provides ready-made UI components:</p>
+                <pre>
+                // Buttons
+                &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
+
+                // Cards
+                &lt;div class="card" style="width: 18rem;"&gt;
+                  &lt;div class="card-body"&gt;
+                    &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+                    &lt;p class="card-text"&gt;Some text.&lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                </pre>
+            </section>
+
+            <section id="utilities">
+                <h2>5. Utilities</h2>
+                <p>Bootstrap provides utility classes for spacing, colors, text alignment, display, and more:</p>
+                <pre>
+                &lt;div class="text-center text-primary p-3"&gt;Centered Text&lt;/div&gt;
+                &lt;div class="m-2 p-2 bg-light"&gt;Box with margin and padding&lt;/div&gt;
+                </pre>
+            </section>
+
+            <section id="forms">
+                <h2>6. Forms</h2>
+                <pre>
+                &lt;form&gt;
+                  &lt;div class="mb-3"&gt;
+                    &lt;label for="email" class="form-label"&gt;Email address&lt;/label&gt;
+                    &lt;input type="email" class="form-control" id="email"&gt;
+                  &lt;/div&gt;
+                  &lt;button type="submit" class="btn btn-success"&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+                </pre>
+                <p>Bootstrap forms are responsive and styled by default.</p>
+            </section>
+
+            <section id="navbar">
+                <h2>7. Navbar</h2>
+                <pre>
+                &lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+                  &lt;div class="container-fluid"&gt;
+                    &lt;a class="navbar-brand" href="#"&gt;Brand&lt;/a&gt;
+                    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;&lt;/button&gt;
+                    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+                      &lt;ul class="navbar-nav"&gt;
+                        &lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                      &lt;/ul&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/nav&gt;
+                </pre>
+            </section>
+
+            <section id="modals">
+                <h2>8. Modals</h2>
+                <pre>
+                &lt;button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"&gt;
+                  Launch Modal
+                &lt;/button&gt;
+
+                &lt;div class="modal fade" id="exampleModal"&gt;
+                  &lt;div class="modal-dialog"&gt;
+                    &lt;div class="modal-content"&gt;
+                      &lt;div class="modal-header"&gt;
+                        &lt;h5 class="modal-title"&gt;Modal title&lt;/h5&gt;
+                        &lt;button type="button" class="btn-close" data-bs-dismiss="modal"&gt;&lt;/button&gt;
+                      &lt;/div&gt;
+                      &lt;div class="modal-body"&gt;Modal content here&lt;/div&gt;
+                      &lt;div class="modal-footer"&gt;
+                        &lt;button type="button" class="btn btn-secondary" data-bs-dismiss="modal"&gt;Close&lt;/button&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>9. Best Practices</h2>
+                <ul>
+                    <li>Use container classes (&lt;div class="container"&gt; or &lt;div class="container-fluid"&gt;) to align content.</li>
+                    <li>Use the grid system for responsive layouts.</li>
+                    <li>Keep custom CSS minimal; prefer Bootstrap utilities.</li>
+                    <li>Use semantic HTML and accessible components.</li>
+                    <li>Always test on multiple screen sizes.</li>
+                </ul>
+            </section>
+
+            <section id="resources">
+                <h2>10. Resources</h2>
+                <ul>
+                    <li><a href="https://getbootstrap.com/" target="_blank" style="color: var(--neon)">Official Bootstrap Docs</a></li>
+                    <li><a href="https://www.w3schools.com/bootstrap5/" target="_blank" style="color: var(--neon)">W3Schools Bootstrap 5</a></li>
+                    <li>Books: Bootstrap 5 Quick Start</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+function showSection(id){
+    document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+    const sec = document.getElementById(id);
+    if(sec) sec.classList.add('active');
+}
+
+document.getElementById("downloadNotes").addEventListener("click", ()=>{
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Bootstrap_Tutorial_Notes.txt";
+    link.click();
+});
+    </script>
+
+</body>
+</html>

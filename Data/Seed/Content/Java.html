@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction</button>
+            <button onclick="showSection('setup')">2. Setup & Installation</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables & Data Types</button>
+            <button onclick="showSection('operators')">5. Operators</button>
+            <button onclick="showSection('control')">6. Control Flow</button>
+            <button onclick="showSection('oop')">7. Object-Oriented Programming</button>
+            <button onclick="showSection('collections')">8. Collections Framework</button>
+            <button onclick="showSection('exceptions')">9. Exceptions</button>
+            <button onclick="showSection('files')">10. File Handling</button>
+            <button onclick="showSection('best')">11. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Java — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction</h2>
+                <p>Java is a class-based, object-oriented programming language designed for portability and reliability.</p>
+                <ul>
+                    <li>Developed by Sun Microsystems (1995).</li>
+                    <li>“Write Once, Run Anywhere” — Java runs on the JVM.</li>
+                    <li>Used in Android apps, backend systems, and enterprise solutions.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Installation</h2>
+                <pre>
+                    # Download Java JDK:
+                    https://www.oracle.com/java/technologies/javase-downloads.html
+
+                    # Check version:
+                    java -version
+                    javac -version
+                </pre>
+                <p>Use IDEs like IntelliJ IDEA, Eclipse, or VS Code for productivity.</p>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    public class HelloWorld {
+                        public static void main(String[] args) {
+                            System.out.println("Hello, Java!");
+                        }
+                    }
+                </pre>
+                <ul>
+                    <li>All code must be inside a class.</li>
+                    <li><code>main()</code> is the program entry point.</li>
+                    <li>Statements end with a semicolon.</li>
+                </ul>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables & Data Types</h2>
+                <pre>
+                    int age = 25;
+                    double pi = 3.1416;
+                    char grade = 'A';
+                    boolean isJavaFun = true;
+                    String name = "Alice";
+                </pre>
+                <p>Java is statically typed — types must be declared explicitly.</p>
+            </section>
+
+            <section id="operators">
+                <h2>5. Operators</h2>
+                <pre>
+                    # Arithmetic: +, -, *, /, %
+                    # Relational: ==, !=, <,>, <=, >=
+                    # Logical: &&, ||, !
+                    # Assignment: =, +=, -=, *=, /=
+                </pre>
+            </section>
+
+            <section id="control">
+                <h2>6. Control Flow</h2>
+                <pre>
+                    if (x > 0) {
+                        System.out.println("Positive");
+                    } else if (x == 0) {
+                        System.out.println("Zero");
+                    } else {
+                        System.out.println("Negative");
+                    }
+
+                    for (int i = 0; i < 5; i++) {
+                        System.out.println(i);
+                    }
+
+                    while (x > 0) {
+                        x--;
+                    }
+                </pre>
+            </section>
+
+            <section id="oop">
+                <h2>7. Object-Oriented Programming</h2>
+                <pre>
+                    class Animal {
+                        String name;
+                        Animal(String name) { this.name = name; }
+
+                        void speak() {
+                            System.out.println(name + " makes a sound");
+                        }
+                    }
+
+                    class Dog extends Animal {
+                        Dog(String name) { super(name); }
+
+                        @Override
+                        void speak() {
+                            System.out.println(name + " barks");
+                        }
+                    }
+
+                    public class Main {
+                        public static void main(String[] args) {
+                            Dog d = new Dog("Rex");
+                            d.speak();
+                        }
+                    }
+                </pre>
+                <p>Java supports encapsulation, inheritance, and polymorphism.</p>
+            </section>
+
+            <section id="collections">
+                <h2>8. Collections Framework</h2>
+                <pre>
+                    import java.util.*;
+
+                    List<String> names = new ArrayList<>();
+                    names.add("Alice");
+                    names.add("Bob");
+
+                    for (String n : names)
+                        System.out.println(n);
+
+                    Map<String, Integer> ages = new HashMap<>();
+                    ages.put("Alice", 25);
+                    ages.put("Bob", 30);
+                    System.out.println(ages.get("Alice"));
+                </pre>
+                <p>The Collections Framework provides dynamic data structures like lists, sets, and maps.</p>
+            </section>
+
+            <section id="exceptions">
+                <h2>9. Exceptions</h2>
+                <pre>
+                    try {
+                        int result = 10 / 0;
+                    } catch (ArithmeticException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    } finally {
+                        System.out.println("Cleanup complete");
+                    }
+                </pre>
+                <p>Always catch specific exceptions and use finally for cleanup operations.</p>
+            </section>
+
+            <section id="files">
+                <h2>10. File Handling</h2>
+                <pre>
+                    import java.io.*;
+
+                    try {
+                        FileWriter writer = new FileWriter("output.txt");
+                        writer.write("Hello File!");
+                        writer.close();
+
+                        BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+                        System.out.println(reader.readLine());
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Use meaningful class and variable names.</li>
+                    <li>Follow standard naming conventions (camelCase, PascalCase).</li>
+                    <li>Handle exceptions gracefully.</li>
+                    <li>Prefer interfaces and abstract classes for flexibility.</li>
+                    <li>Document your code with Javadoc comments.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+function showSection(id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.add('active');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("downloadNotes");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const content = document.getElementById("tutorial-content").innerText;
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Java_Tutorial_Notes.txt";
+      link.click();
+    });
+  }
+});
+    </script>
+
+</body>
+</html>

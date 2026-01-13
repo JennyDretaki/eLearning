@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to CSS</button>
+            <button onclick="showSection('syntax')">2. CSS Syntax</button>
+            <button onclick="showSection('selectors')">3. Selectors</button>
+            <button onclick="showSection('properties')">4. Properties & Values</button>
+            <button onclick="showSection('colors')">5. Colors & Backgrounds</button>
+            <button onclick="showSection('text')">6. Text & Fonts</button>
+            <button onclick="showSection('boxes')">7. Box Model</button>
+            <button onclick="showSection('layout')">8. Layout & Positioning</button>
+            <button onclick="showSection('flexgrid')">9. Flexbox & Grid</button>
+            <button onclick="showSection('animations')">10. Transitions & Animations</button>
+            <button onclick="showSection('best')">11. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>CSS — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to CSS</h2>
+                <p>CSS (Cascading Style Sheets) is used to style HTML documents. It controls colors, fonts, layout, and overall presentation.</p>
+                <ul>
+                    <li>Separates content (HTML) from design (CSS).</li>
+                    <li>Supports responsive design.</li>
+                    <li>CSS3 adds advanced features like animations, transitions, and flex/grid layout.</li>
+                </ul>
+            </section>
+
+            <section id="syntax">
+                <h2>2. CSS Syntax</h2>
+                <pre>
+                    selector {
+                      property: value;
+                    }
+                </pre>
+                <p>Example:</p>
+                <pre>
+                    p {
+                      color: cyan;
+                      font-size: 16px;
+                    }
+                </pre>
+            </section>
+
+            <section id="selectors">
+                <h2>3. Selectors</h2>
+                <pre>
+                    /* Element selector */
+                    p { ... }
+
+                    /* Class selector */
+                    .my-class { ... }
+
+                    /* ID selector */
+                    #my-id { ... }
+
+                    /* Descendant selector */
+                    div p { ... }
+
+                    /* Grouping */
+                    h1, h2, h3 { ... }
+                </pre>
+            </section>
+
+            <section id="properties">
+                <h2>4. Properties & Values</h2>
+                <p>Properties define what to style, and values define how.</p>
+                <pre>
+                    color: red;
+                    background-color: #222;
+                    width: 100px;
+                    height: 50px;
+                    border: 1px solid cyan;
+                </pre>
+            </section>
+
+            <section id="colors">
+                <h2>5. Colors & Backgrounds</h2>
+                <pre>
+                    /* Named colors */
+                    color: red;
+
+                    /* HEX colors */
+                    color: #00ffff;
+
+                    /* RGB colors */
+                    color: rgb(0,255,255);
+
+                    /* Background images */
+                    background-image: url("bg.jpg");
+                    background-size: cover;
+                </pre>
+            </section>
+
+            <section id="text">
+                <h2>6. Text & Fonts</h2>
+                <pre>
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+                    text-decoration: underline;
+                    line-height: 1.5;
+                </pre>
+            </section>
+
+            <section id="boxes">
+                <h2>7. Box Model</h2>
+                <pre>
+                    /* Box model properties */
+                    width, height
+                    padding
+                    border
+                    margin
+                </pre>
+                <p>Example:</p>
+                <pre>
+                    div {
+                      width: 100px;
+                      padding: 10px;
+                      border: 2px solid cyan;
+                      margin: 5px;
+                    }
+                </pre>
+            </section>
+
+            <section id="layout">
+                <h2>8. Layout & Positioning</h2>
+                <pre>
+                    /* Positioning */
+                    static, relative, absolute, fixed, sticky
+
+                    /* Display types */
+                    block, inline, inline-block, none
+                </pre>
+            </section>
+
+            <section id="flexgrid">
+                <h2>9. Flexbox & Grid</h2>
+                <pre>
+                    /* Flexbox */
+                    .container {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    }
+
+                    /* Grid */
+                    .grid {
+                      display: grid;
+                      grid-template-columns: 1fr 2fr;
+                      gap: 10px;
+                    }
+                </pre>
+            </section>
+
+            <section id="animations">
+                <h2>10. Transitions & Animations</h2>
+                <pre>
+                    /* Transition */
+                    button {
+                      transition: background 0.3s;
+                    }
+
+                    /* Keyframe animation */
+                    @keyframes neonGlow {
+                      0% { box-shadow: 0 0 5px cyan; }
+                      50% { box-shadow: 0 0 20px cyan; }
+                      100% { box-shadow: 0 0 5px cyan; }
+                    }
+                    button {
+                      animation: neonGlow 1s infinite;
+                    }
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Keep CSS modular and organized.</li>
+                    <li>Use external stylesheets for maintainability.</li>
+                    <li>Use meaningful class and ID names.</li>
+                    <li>Prefer relative units (%, em, rem) for responsive design.</li>
+                    <li>Validate CSS using W3C CSS Validator.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+    function showSection(id){
+        document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+        const sec = document.getElementById(id);
+        if(sec) sec.classList.add('active');
+    }
+
+    document.getElementById("downloadNotes").addEventListener("click", ()=>{
+        const content = document.getElementById("tutorial-content").innerText;
+        const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "CSS_Tutorial_Notes.txt";
+        link.click();
+    });
+    </script>
+
+</body>
+</html>

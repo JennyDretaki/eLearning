@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PC Hardware Setup — Beginner Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Understanding PC Components</button>
+            <button onclick="showSection('cpu')">2. CPU and Cooling</button>
+            <button onclick="showSection('motherboard')">3. Motherboard</button>
+            <button onclick="showSection('ram')">4. Memory (RAM)</button>
+            <button onclick="showSection('storage')">5. Storage Devices</button>
+            <button onclick="showSection('gpu')">6. Graphics Card (GPU)</button>
+            <button onclick="showSection('psu')">7. Power Supply (PSU)</button>
+            <button onclick="showSection('case')">8. Case and Cable Management</button>
+            <button onclick="showSection('assembly')">9. Step-by-Step Assembly</button>
+            <button onclick="showSection('troubleshooting')">10. Troubleshooting</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>PC Hardware Setup — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Understanding PC Components</h2>
+                <p>A personal computer (PC) is made up of several key hardware components that work together to perform tasks. Understanding these parts is essential before building or upgrading your own system.</p>
+                <ul>
+                    <li>Processor (CPU)</li>
+                    <li>Motherboard</li>
+                    <li>Memory (RAM)</li>
+                    <li>Storage (SSD/HDD)</li>
+                    <li>Graphics Card (GPU)</li>
+                    <li>Power Supply (PSU)</li>
+                    <li>Case and Cooling System</li>
+                </ul>
+            </section>
+
+            <section id="cpu">
+                <h2>2. CPU and Cooling</h2>
+                <p>The CPU (Central Processing Unit) is the brain of your PC — it executes instructions and handles most computational tasks.</p>
+                <ul>
+                    <li><b>Intel:</b> i3, i5, i7, i9 series</li>
+                    <li><b>AMD:</b> Ryzen 3, 5, 7, 9 series</li>
+                </ul>
+                <p>Ensure you apply a small amount of thermal paste between the CPU and cooler for proper heat transfer.</p>
+                <pre>
+                    // Installing a CPU (Basic Steps)
+                    1. Open CPU socket lever on motherboard.
+                    2. Align CPU arrow with socket mark.
+                    3. Gently place CPU in and close latch.
+                    4. Apply thermal paste and mount cooler.
+                </pre>
+            </section>
+
+            <section id="motherboard">
+                <h2>3. Motherboard</h2>
+                <p>The motherboard is the central hub that connects all hardware components. It determines compatibility with your CPU, RAM, and other peripherals.</p>
+                <ul>
+                    <li><b>Form Factors:</b> ATX, Micro-ATX, Mini-ITX</li>
+                    <li><b>Chipsets:</b> Affect overclocking and connectivity (e.g., B550, Z690)</li>
+                    <li><b>Ports:</b> USB, HDMI, SATA, M.2, PCIe slots</li>
+                </ul>
+                <p>Always check your CPU socket type and RAM compatibility before buying.</p>
+            </section>
+
+            <section id="ram">
+                <h2>4. Memory (RAM)</h2>
+                <p>RAM temporarily stores data your PC needs to access quickly. More RAM = smoother multitasking.</p>
+                <ul>
+                    <li><b>DDR4:</b> Common in modern systems</li>
+                    <li><b>DDR5:</b> Latest, faster generation</li>
+                </ul>
+                <pre>
+                    // Installing RAM
+                    1. Unlock RAM slots.
+                    2. Align notch with slot.
+                    3. Firmly press down until clips snap.
+                </pre>
+            </section>
+
+            <section id="storage">
+                <h2>5. Storage Devices</h2>
+                <p>Storage holds your OS, applications, and files. You can mix SSDs (speed) and HDDs (capacity).</p>
+                <ul>
+                    <li><b>SSD (Solid State Drive):</b> Faster boot and load times</li>
+                    <li><b>HDD (Hard Disk Drive):</b> Larger but slower</li>
+                    <li><b>M.2 NVMe:</b> Compact and ultra-fast SSDs</li>
+                </ul>
+                <p>Mount drives securely and connect SATA or M.2 ports depending on the type.</p>
+            </section>
+
+            <section id="gpu">
+                <h2>6. Graphics Card (GPU)</h2>
+                <p>The GPU handles image rendering and gaming performance. It’s optional for basic systems, but essential for gaming, design, or AI workloads.</p>
+                <ul>
+                    <li><b>NVIDIA GeForce</b> — excellent for gaming</li>
+                    <li><b>AMD Radeon</b> — great price-to-performance ratio</li>
+                </ul>
+                <pre>
+                    // Installing a GPU
+                    1. Insert GPU into PCIe x16 slot.
+                    2. Secure with screws.
+                    3. Connect PCIe power cables from PSU.
+                </pre>
+            </section>
+
+            <section id="psu">
+                <h2>7. Power Supply (PSU)</h2>
+                <p>The PSU converts AC power into DC and powers all components. Choose a reliable, efficient unit.</p>
+                <ul>
+                    <li><b>80 Plus Certified:</b> Ensures power efficiency</li>
+                    <li><b>Modular PSU:</b> Detachable cables for neatness</li>
+                </ul>
+                <p>Ensure wattage covers your GPU and CPU needs (e.g., 650W–850W for gaming PCs).</p>
+            </section>
+
+            <section id="case">
+                <h2>8. Case and Cable Management</h2>
+                <p>The case protects components and provides airflow. Good cable management improves cooling and aesthetics.</p>
+                <ul>
+                    <li>Use zip ties to bundle cables.</li>
+                    <li>Route cables behind the motherboard tray.</li>
+                    <li>Install intake fans in front, exhaust fans in back/top.</li>
+                </ul>
+            </section>
+
+            <section id="assembly">
+                <h2>9. Step-by-Step Assembly</h2>
+                <pre>
+                    1. Install CPU and RAM on motherboard.
+                    2. Mount motherboard into the case.
+                    3. Install PSU and connect main cables.
+                    4. Add storage (SSD/HDD).
+                    5. Install GPU.
+                    6. Connect all fans and front panel connectors.
+                    7. Power on and check BIOS.
+                </pre>
+                <p>After the first boot, install your OS (Windows or Linux) and drivers.</p>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>10. Troubleshooting Tips</h2>
+                <ul>
+                    <li>PC won’t boot? Check all power connectors.</li>
+                    <li>No display? Reseat GPU and RAM.</li>
+                    <li>Overheating? Reapply thermal paste and check fans.</li>
+                    <li>Random shutdowns? Test PSU and check for shorts.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+  window.showSection = function (id) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+  };
+
+  document.getElementById("downloadNotes").addEventListener("click", () => {
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "PC_Hardware_Setup_Notes.txt";
+    link.click();
+  });
+    </script>
+
+</body>
+</html>

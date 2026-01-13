@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Postman Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. What is Postman?</button>
+            <button onclick="showSection('install')">2. Installing Postman</button>
+            <button onclick="showSection('interface')">3. Postman Interface</button>
+            <button onclick="showSection('requests')">4. Making Requests</button>
+            <button onclick="showSection('auth')">5. Authentication</button>
+            <button onclick="showSection('collections')">6. Collections & Folders</button>
+            <button onclick="showSection('env')">7. Environments & Variables</button>
+            <button onclick="showSection('tests')">8. Tests & Scripts</button>
+            <button onclick="showSection('workflows')">9. Workflows & Automation</button>
+            <button onclick="showSection('next')">10. Next Steps</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Postman — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. What is Postman?</h2>
+                <p>Postman is a powerful API development environment that helps you build, test, and document APIs. It provides an easy UI to send HTTP requests, inspect responses, write tests, and automate workflows.</p>
+            </section>
+
+            <section id="install">
+                <h2>2. Installing Postman</h2>
+                <p>Download Postman Desktop or use the web app:</p>
+                <pre>https://www.postman.com/downloads/</pre>
+                <p>Alternatively, install via package managers (macOS Homebrew example):</p>
+                <pre>brew install --cask postman</pre>
+            </section>
+
+            <section id="interface">
+                <h2>3. Postman Interface</h2>
+                <ul>
+                    <li><b>Sidebar:</b> Collections, APIs, Environments, History</li>
+                    <li><b>Request Builder:</b> Method, URL, Params, Authorization, Headers, Body</li>
+                    <li><b>Response Panel:</b> Status, Headers, Body, Cookies, Timings</li>
+                    <li><b>Console:</b> Debug requests and scripts (View → Show Postman Console)</li>
+                </ul>
+            </section>
+
+            <section id="requests">
+                <h2>4. Making Requests</h2>
+                <p>Basic GET request:</p>
+                <pre>
+                    GET https://jsonplaceholder.typicode.com/posts/1
+                </pre>
+                <p>POST request (JSON body):</p>
+                <pre>
+                    POST https://jsonplaceholder.typicode.com/posts
+                    Headers:
+                      Content-Type: application/json
+
+                    Body (raw - JSON):
+                    {
+                      "title": "foo",
+                      "body": "bar",
+                      "userId": 1
+                    }
+                </pre>
+                <p>Use Params tab for query strings, Headers tab for custom headers, and Body tab for payloads.</p>
+            </section>
+
+            <section id="auth">
+                <h2>5. Authentication</h2>
+                <p>Postman supports many auth methods in the Authorization tab:</p>
+                <ul>
+                    <li><b>API Key:</b> Add in header or query param</li>
+                    <li><b>Bearer Token:</b> Set Authorization → Bearer Token</li>
+                    <li><b>Basic Auth:</b> Username & password</li>
+                    <li><b>OAuth 2.0:</b> Use Postman's OAuth helpers to obtain tokens</li>
+                </ul>
+                <pre>
+                    // Example: set Authorization header manually
+                    Authorization: Bearer &lt;your-token&gt;
+                </pre>
+            </section>
+
+            <section id="collections">
+                <h2>6. Collections & Folders</h2>
+                <p>Collections group related requests. Good for organizing endpoints and sharing with teammates.</p>
+                <ul>
+                    <li>Create a new collection → Add requests to it</li>
+                    <li>Use folders inside a collection for structure</li>
+                    <li>Export/import collections (JSON) for sharing</li>
+                </ul>
+            </section>
+
+            <section id="env">
+                <h2>7. Environments & Variables</h2>
+                <p>Environments store variables (like base URLs, tokens) for different contexts (dev/staging/prod).</p>
+                <pre>
+                    // Example variables
+                    baseUrl = https://api.example.com
+                    apiKey = 123abc
+
+                    // Use in requests:
+                    {{baseUrl}}/users
+                    Header: x-api-key: {{apiKey}}
+                </pre>
+                <p>Scopes: Global, Environment, Collection, Local, Data</p>
+            </section>
+
+            <section id="tests">
+                <h2>8. Tests & Scripts</h2>
+                <p>Postman uses JavaScript for pre-request scripts and tests. Tests run after the response and can assert status, response body, headers, etc.</p>
+                <pre>
+                    // Example tests
+                    pm.test("Status is 200", function () {
+                      pm.response.to.have.status(200);
+                    });
+
+                    pm.test("Body has userId", function () {
+                      var json = pm.response.json();
+                      pm.expect(json.userId).to.eql(1);
+                    });
+                </pre>
+                <p>Pre-request scripts can set or modify variables before a request runs:</p>
+                <pre>
+                    // Pre-request example: set timestamp
+                    pm.environment.set("ts", Date.now());
+                </pre>
+            </section>
+
+            <section id="workflows">
+                <h2>9. Workflows & Automation</h2>
+                <p>Postman can automate tests and workflows using:</p>
+                <ul>
+                    <li><b>Collection Runner</b> — run a collection with data files (CSV/JSON)</li>
+                    <li><b>Monitors</b> — scheduled runs on the cloud</li>
+                    <li><b>Newman</b> — CLI runner for CI integration</li>
+                </ul>
+                <pre>
+                    // Run collection with Newman
+                    newman run mycollection.json -e devEnvironment.json
+                </pre>
+            </section>
+
+            <section id="next">
+                <h2>10. Next Steps</h2>
+                <ul>
+                    <li>Learn to mock APIs with Postman Mock Servers</li>
+                    <li>Document APIs using Postman API documentation features</li>
+                    <li>Integrate with CI (GitHub Actions + Newman)</li>
+                    <li>Explore Postman Collections for team collaboration</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+    window.showSection = function (id) {
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      const sec = document.getElementById(id);
+      if (sec) sec.classList.add('active');
+    };
+
+    document.getElementById('downloadNotes').addEventListener('click', () => {
+      const content = document.getElementById('tutorial-content').innerText;
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'Postman_Tutorial_Notes.txt';
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        URL.revokeObjectURL(link.href);
+        link.remove();
+      }, 500);
+    });
+
+
+    (function initFromHash() {
+      const hash = location.hash.replace('#','');
+      if (hash && document.getElementById(hash)) {
+        showSection(hash);
+      } else {
+        showSection('intro');
+        }
+
+    })();
+    </script>
+</body>
+</html>

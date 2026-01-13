@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Tutorial — Beginner to Intermediate</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction</button>
+            <button onclick="showSection('setup')">2. Setup & Installation</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables & Data Types</button>
+            <button onclick="showSection('operators')">5. Operators</button>
+            <button onclick="showSection('control')">6. Control Flow</button>
+            <button onclick="showSection('functions')">7. Functions</button>
+            <button onclick="showSection('collections')">8. Lists, Tuples & Dictionaries</button>
+            <button onclick="showSection('oop')">9. Object-Oriented Programming</button>
+            <button onclick="showSection('files')">10. File Handling</button>
+            <button onclick="showSection('exceptions')">11. Exceptions</button>
+            <button onclick="showSection('modules')">12. Modules & Packages</button>
+            <button onclick="showSection('best')">13. Best Practices</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Python — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction</h2>
+                <p>Python is a high-level, interpreted, and dynamically typed language. It's known for its readability, versatility, and massive ecosystem of libraries.</p>
+                <ul>
+                    <li>Created by Guido van Rossum (1991).</li>
+                    <li>Excellent for data science, AI, web development, and automation.</li>
+                    <li>Emphasizes code simplicity and readability.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Installation</h2>
+                <pre>
+                    # Windows / macOS / Linux:
+                    python --version
+                    pip install package_name
+                </pre>
+                <p>Use an IDE like VS Code, PyCharm, or Jupyter Notebook for productivity.</p>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    print("Hello, Python!")
+
+                    # Indentation defines blocks:
+                    if True:
+                        print("Indented block")
+                </pre>
+                <ul>
+                    <li>Python uses indentation (4 spaces) instead of braces.</li>
+                    <li>Comments start with <code>#</code>.</li>
+                </ul>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables & Data Types</h2>
+                <pre>
+                    x = 10            # int
+                    pi = 3.14         # float
+                    name = "Alice"    # str
+                    is_valid = True   # bool
+                </pre>
+                <p>Variables are dynamically typed — no need to declare types explicitly.</p>
+            </section>
+
+            <section id="operators">
+                <h2>5. Operators</h2>
+                <pre>
+                    # Arithmetic: +, -, *, /, //, %, **
+                    # Comparison: ==, !=, <,>, <=, >=
+                    # Logical: and, or, not
+                    # Assignment: =, +=, -=, *=, /=
+                </pre>
+            </section>
+
+            <section id="control">
+                <h2>6. Control Flow</h2>
+                <pre>
+                    if x > 0:
+                        print("Positive")
+                    elif x == 0:
+                        print("Zero")
+                    else:
+                        print("Negative")
+
+                    for i in range(5):
+                        print(i)
+
+                    while x > 0:
+                        x -= 1
+                </pre>
+            </section>
+
+            <section id="functions">
+                <h2>7. Functions</h2>
+                <pre>
+                    def greet(name):
+                        return f"Hello, {name}"
+
+                    print(greet("Alice"))
+                </pre>
+            </section>
+
+            <section id="collections">
+                <h2>8. Lists, Tuples & Dictionaries</h2>
+                <pre>
+                    # Lists
+                    nums = [1, 2, 3]
+                    nums.append(4)
+
+                    # Tuples
+                    coords = (10, 20)
+
+                    # Dictionaries
+                    person = {"name": "Bob", "age": 25}
+                    print(person["name"])
+                </pre>
+            </section>
+
+            <section id="oop">
+                <h2>9. Object-Oriented Programming</h2>
+                <pre>
+                    class Animal:
+                        def __init__(self, name):
+                            self.name = name
+
+                        def speak(self):
+                            print(f"{self.name} makes a sound")
+
+                    class Dog(Animal):
+                        def speak(self):
+                            print(f"{self.name} barks")
+
+                    dog = Dog("Rex")
+                    dog.speak()
+                 </pre>
+            </section>
+
+            <section id="files">
+                <h2>10. File Handling</h2>
+                <pre>
+                    with open("data.txt", "w") as f:
+                        f.write("Hello file!")
+
+                    with open("data.txt", "r") as f:
+                        content = f.read()
+                        print(content)
+                </pre>
+            </section>
+
+            <section id="exceptions">
+                <h2>11. Exceptions</h2>
+                <pre>
+                    try:
+                        x = int("abc")
+                    except ValueError as e:
+                        print("Error:", e)
+                    finally:
+                        print("Done")
+                </pre>
+            </section>
+
+            <section id="modules">
+                <h2>12. Modules & Packages</h2>
+                <pre>
+                    import math
+                    print(math.sqrt(16))
+
+                    from datetime import datetime
+                    print(datetime.now())
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>13. Best Practices</h2>
+                <ul>
+                    <li>Follow PEP 8 style guidelines.</li>
+                    <li>Use virtual environments (<code>venv</code>).</li>
+                    <li>Write clean, modular, and documented code.</li>
+                    <li>Handle exceptions gracefully.</li>
+                    <li>Use list comprehensions for concise loops.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+function showSection(id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.add('active');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("downloadNotes");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const content = document.getElementById("tutorial-content").innerText;
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Python_Tutorial_Notes.txt";
+      link.click();
+    });
+  }
+});
+    </script>
+
+</body>
+</html>

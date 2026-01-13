@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XAMPP Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. What is XAMPP?</button>
+            <button onclick="showSection('install')">2. Installing XAMPP</button>
+            <button onclick="showSection('components')">3. Components Overview</button>
+            <button onclick="showSection('setup')">4. Setting Up Localhost</button>
+            <button onclick="showSection('phpmyadmin')">5. Using phpMyAdmin</button>
+            <button onclick="showSection('project')">6. Creating a PHP Project</button>
+            <button onclick="showSection('troubleshoot')">7. Troubleshooting</button>
+            <button onclick="showSection('nextsteps')">8. Next Steps</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>XAMPP — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. What is XAMPP?</h2>
+                <p><b>XAMPP</b> is a free, open-source software package that provides a local web server environment for developing and testing PHP applications. It bundles:</p>
+                <ul>
+                    <li><b>X</b> — Cross-platform (Windows, macOS, Linux)</li>
+                    <li><b>A</b> — Apache (web server)</li>
+                    <li><b>M</b> — MySQL/MariaDB (database)</li>
+                    <li><b>P</b> — PHP (scripting language)</li>
+                    <li><b>P</b> — Perl (optional scripting language)</li>
+                </ul>
+            </section>
+
+            <section id="install">
+                <h2>2. Installing XAMPP</h2>
+                <p>Follow these steps to install XAMPP:</p>
+                <pre>
+                    1. Visit https://www.apachefriends.org/download.html
+                    2. Download the correct installer for your OS.
+                    3. Run the installer and follow setup steps.
+                    4. Choose components: Apache, MySQL, PHPMyAdmin (essential ones).
+                    5. Finish and launch the XAMPP Control Panel.
+                </pre>
+            </section>
+
+            <section id="components">
+                <h2>3. Components Overview</h2>
+                <p>Main components of XAMPP include:</p>
+                <ul>
+                    <li><b>Apache:</b> The local web server that handles HTTP requests.</li>
+                    <li><b>MySQL/MariaDB:</b> Database management system for storing data.</li>
+                    <li><b>PHP:</b> Server-side scripting language used for backend logic.</li>
+                    <li><b>phpMyAdmin:</b> Web interface for managing databases visually.</li>
+                    <li><b>FileZilla:</b> Optional FTP server for file transfers.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>4. Setting Up Localhost</h2>
+                <p>To start using XAMPP:</p>
+                <pre>
+                    1. Open XAMPP Control Panel.
+                    2. Click “Start” for Apache and MySQL.
+                    3. Visit http://localhost in your browser.
+                </pre>
+                <p>If you see the XAMPP Dashboard, your server is working!</p>
+                <p>Project files go in the <b>htdocs</b> folder, typically found at:</p>
+                <pre>C:\xampp\htdocs\</pre>
+            </section>
+
+            <section id="phpmyadmin">
+                <h2>5. Using phpMyAdmin</h2>
+                <p>phpMyAdmin helps you manage databases easily:</p>
+                <pre>
+                    1. Go to http://localhost/phpmyadmin
+                    2. Click “New” to create a new database.
+                    3. Add tables, fields, and records visually.
+                    4. Use the SQL tab for manual queries.
+                </pre>
+            </section>
+
+            <section id="project">
+                <h2>6. Creating a PHP Project</h2>
+                <p>Let’s create a simple “Hello World” project:</p>
+                <pre>
+                    1. Navigate to C:\xampp\htdocs
+                    2. Create a folder named mysite
+                    3. Inside it, create a file index.php with the following code:
+                </pre>
+                <pre>
+                    &lt;?php
+                      echo "Hello, world! Welcome to XAMPP.";
+                    ?&gt;
+                </pre>
+                <p>Then, open your browser and visit:</p>
+                <pre>http://localhost/mysite/</pre>
+                <p>You should see your message displayed!</p>
+            </section>
+
+            <section id="troubleshoot">
+                <h2>7. Troubleshooting</h2>
+                <ul>
+                    <li><b>Apache not starting?</b> Check if Skype, IIS, or another service is using port 80 or 443.</li>
+                    <li><b>MySQL errors?</b> Delete the `ib_logfile0` and `ib_logfile1` files if database won’t start.</li>
+                    <li><b>Port conflict?</b> Change Apache ports in XAMPP → Config → Service and Port Settings.</li>
+                    <li><b>Permission issues (macOS/Linux)?</b> Run XAMPP as administrator/sudo.</li>
+                </ul>
+            </section>
+
+            <section id="nextsteps">
+                <h2>8. Next Steps</h2>
+                <ul>
+                    <li>Learn how to connect PHP to MySQL using PDO or MySQLi.</li>
+                    <li>Explore creating a CRUD (Create, Read, Update, Delete) web app.</li>
+                    <li>Enable SSL locally (https://localhost) for secure testing.</li>
+                    <li>Learn about Virtual Hosts to manage multiple local sites.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+  window.showSection = function(id) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+  };
+
+  document.getElementById("downloadNotes").addEventListener("click", () => {
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "XAMPP_Tutorial_Notes.txt";
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(link.href);
+      link.remove();
+    }, 500);
+  });
+    </script>
+</body>
+</html>

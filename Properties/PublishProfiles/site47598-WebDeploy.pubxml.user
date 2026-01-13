@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxb2Eva7yBUGxRQLtCCsfFAAAAAACAAAAAAAQZgAAAAEAACAAAAC8Ep4VBcEZwtsXUoYhJKjcmz/SMC1USOa60aAZigYOogAAAAAOgAAAAAIAACAAAAAlRsoaMk4SCEBKs7hgTp4zq/TBrc/lHVUbaTYLzutE7yAAAABl8r4Jv8jhPFGlQ+IfBfHBU4vU6hjLG3VyM0zfGbKJkEAAAABhmu807khfkJvkiQV8tB62lZ82dGVEQZ1XYAy0WFV8zsR3EQUYqXAVXMPsQB4Wdqn3/4OuAjjqOkxH2zRv9ziu</EncryptedPassword>
+    <History>True|2025-12-20T00:40:23.2008864Z||;True|2025-12-20T02:21:31.4360928+02:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Host=localhost%3bDatabase=elearningdb%3bUsername=postgres%3bPassword=A!%40#5462xcgfdcbasln%40%40#456gccgf</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

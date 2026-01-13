@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docker & Docker Compose Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to Docker</button>
+            <button onclick="showSection('install')">2. Installing Docker</button>
+            <button onclick="showSection('images')">3. Docker Images & Containers</button>
+            <button onclick="showSection('commands')">4. Common Docker Commands</button>
+            <button onclick="showSection('compose')">5. Docker Compose Basics</button>
+            <button onclick="showSection('example')">6. Example Project</button>
+            <button onclick="showSection('nextsteps')">7. Next Steps</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Docker & Docker Compose — Beginner Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to Docker</h2>
+                <p>Docker is a platform that allows you to build, package, and run applications in lightweight, isolated containers.</p>
+                <p>Containers ensure your app runs the same everywhere — whether on your machine, a server, or the cloud.</p>
+            </section>
+
+            <section id="install">
+                <h2>2. Installing Docker</h2>
+                <pre>
+                    # Windows & macOS
+                    Download Docker Desktop from: https://www.docker.com/get-started
+
+                    # Linux (Ubuntu)
+                    sudo apt update
+                    sudo apt install docker.io
+                    sudo systemctl start docker
+                    sudo systemctl enable docker
+
+                    # Verify Installation
+                    docker --version
+                </pre>
+            </section>
+
+            <section id="images">
+                <h2>3. Docker Images & Containers</h2>
+                <p>A <b>Docker image</b> is a template that defines what’s inside your container. A <b>container</b> is a running instance of that image.</p>
+                <pre>
+                    # Pull an image
+                    docker pull nginx
+
+                    # Run a container
+                    docker run -d -p 8080:80 nginx
+
+                    # List running containers
+                    docker ps
+
+                    # Stop a container
+                    docker stop [container_id]
+                </pre>
+            </section>
+
+            <section id="commands">
+                <h2>4. Common Docker Commands</h2>
+                <pre>
+                    docker images      # List all images
+                    docker ps -a       # List all containers
+                    docker build .     # Build an image from Dockerfile
+                    docker exec -it ID bash  # Open terminal in running container
+                    docker logs ID     # View container logs
+                    docker rm ID       # Remove container
+                    docker rmi IMAGE   # Remove image
+              </pre>
+            </section>
+
+            <section id="compose">
+                <h2>5. Docker Compose Basics</h2>
+                <p>Docker Compose lets you define and manage multi-container applications using a YAML file.</p>
+                <pre>
+                    # docker-compose.yml
+                    version: '3'
+                    services:
+                      web:
+                        image: nginx
+                        ports:
+                          - "8080:80"
+                      app:
+                        build: .
+                        depends_on:
+                          - web
+
+                    # Start the stack
+                    docker compose up
+
+                    # Stop it
+                    docker compose down
+                 </pre>
+            </section>
+
+            <section id="example">
+                <h2>6. Example Project</h2>
+                <p>Here’s a simple Node.js app with Docker Compose:</p>
+                <pre>
+                    # Dockerfile
+                    FROM node:18
+                    WORKDIR /app
+                    COPY package*.json ./
+                    RUN npm install
+                    COPY . .
+                    CMD ["npm", "start"]
+
+                    # docker-compose.yml
+                    version: '3'
+                    services:
+                      app:
+                        build: .
+                        ports:
+                          - "3000:3000"
+                 </pre>
+            </section>
+
+            <section id="nextsteps">
+                <h2>7. Next Steps</h2>
+                <ul>
+                    <li>Learn about Docker volumes for persistent storage.</li>
+                    <li>Use Docker Hub to share your images.</li>
+                    <li>Deploy apps with Docker Compose in production.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+  window.showSection = function (id) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+  };
+
+  document.getElementById("downloadNotes").addEventListener("click", () => {
+    const content = document.getElementById("tutorial-content").innerText;
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Docker_Tutorial_Notes.txt";
+    link.click();
+  });
+    </script>
+
+</body>
+</html>

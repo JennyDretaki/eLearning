@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing & DevOps — Complete Tutorial</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to Cloud & DevOps</button>
+            <button onclick="showSection('cloudConcepts')">2. Cloud Computing Concepts</button>
+            <button onclick="showSection('cloudModels')">3. Cloud Service Models</button>
+            <button onclick="showSection('cloudProviders')">4. Major Cloud Providers</button>
+            <button onclick="showSection('devopsIntro')">5. What is DevOps?</button>
+            <button onclick="showSection('ciCd')">6. CI/CD (Continuous Integration & Deployment)</button>
+            <button onclick="showSection('tools')">7. DevOps Tools & Automation</button>
+            <button onclick="showSection('containers')">8. Containers & Orchestration</button>
+            <button onclick="showSection('monitoring')">9. Monitoring & Observability</button>
+            <button onclick="showSection('security')">10. Cloud & DevOps Security</button>
+            <button onclick="showSection('bestPractices')">11. Best Practices</button>
+            <button onclick="showSection('practice')">12. Hands-On Practice</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>Cloud Computing & DevOps — Complete Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to Cloud & DevOps</h2>
+                <p>Cloud computing and DevOps together revolutionize how software is built, deployed, and maintained. Cloud provides scalable infrastructure, while DevOps automates processes to increase reliability and speed.</p>
+                <ul>
+                    <li><b>Cloud Computing:</b> On-demand access to computing resources over the internet.</li>
+                    <li><b>DevOps:</b> A culture and set of practices that combine software development (Dev) and IT operations (Ops).</li>
+                </ul>
+            </section>
+
+            <section id="cloudConcepts">
+                <h2>2. Cloud Computing Concepts</h2>
+                <ul>
+                    <li><b>Scalability:</b> Resources expand or shrink dynamically.</li>
+                    <li><b>Elasticity:</b> Pay for what you use.</li>
+                    <li><b>Virtualization:</b> Abstracting hardware into virtual resources.</li>
+                    <li><b>High Availability (HA):</b> Minimizing downtime and ensuring reliability.</li>
+                </ul>
+            </section>
+
+            <section id="cloudModels">
+                <h2>3. Cloud Service Models</h2>
+                <ul>
+                    <li><b>IaaS (Infrastructure as a Service):</b> Provides virtualized computing resources (e.g., AWS EC2, Azure VMs).</li>
+                    <li><b>PaaS (Platform as a Service):</b> Offers platforms for app development (e.g., Google App Engine).</li>
+                    <li><b>SaaS (Software as a Service):</b> Delivers ready-to-use software (e.g., Gmail, Salesforce).</li>
+                </ul>
+                <p>Deployment models include public, private, hybrid, and multi-cloud.</p>
+            </section>
+
+            <section id="cloudProviders">
+                <h2>4. Major Cloud Providers</h2>
+                <ul>
+                    <li><b>Amazon Web Services (AWS):</b> Leading provider with a broad ecosystem.</li>
+                    <li><b>Microsoft Azure:</b> Enterprise-grade integration with Microsoft products.</li>
+                    <li><b>Google Cloud Platform (GCP):</b> Strong in AI, data analytics, and Kubernetes.</li>
+                </ul>
+            </section>
+
+            <section id="devopsIntro">
+                <h2>5. What is DevOps?</h2>
+                <p>DevOps bridges the gap between developers and IT teams through automation, collaboration, and continuous feedback.</p>
+                <ul>
+                    <li>Shorter development cycles.</li>
+                    <li>Improved deployment frequency.</li>
+                    <li>More reliable releases and faster issue resolution.</li>
+                </ul>
+            </section>
+
+            <section id="ciCd">
+                <h2>6. CI/CD (Continuous Integration & Deployment)</h2>
+                <p>CI/CD pipelines automate code integration, testing, and deployment.</p>
+                <pre>
+                    # Example CI/CD Workflow
+                    1. Developer commits code to Git
+                    2. Build process triggered automatically
+                    3. Unit tests run
+                    4. If successful, deploy to staging
+                    5. After approval, deploy to production
+                </pre>
+                <p>Tools: Jenkins, GitHub Actions, GitLab CI/CD, CircleCI.</p>
+            </section>
+
+            <section id="tools">
+                <h2>7. DevOps Tools & Automation</h2>
+                <ul>
+                    <li><b>Configuration Management:</b> Ansible, Puppet, Chef</li>
+                    <li><b>Containerization:</b> Docker</li>
+                    <li><b>Orchestration:</b> Kubernetes</li>
+                    <li><b>CI/CD:</b> Jenkins, GitHub Actions</li>
+                    <li><b>Monitoring:</b> Prometheus, Grafana</li>
+                </ul>
+            </section>
+
+            <section id="containers">
+                <h2>8. Containers & Orchestration</h2>
+                <p>Containers package applications and dependencies together for portability and consistency.</p>
+                <pre>
+                    # Basic Docker commands
+                    docker build -t myapp .
+                    docker run -d -p 8080:80 myapp
+                    docker ps
+                </pre>
+                <p>Kubernetes manages containers at scale using clusters, pods, and services.</p>
+            </section>
+
+            <section id="monitoring">
+                <h2>9. Monitoring & Observability</h2>
+                <ul>
+                    <li>Track metrics and logs using Prometheus or CloudWatch.</li>
+                    <li>Set alerts for CPU, memory, and latency.</li>
+                    <li>Use dashboards (Grafana) for visualization.</li>
+                </ul>
+            </section>
+
+            <section id="security">
+                <h2>10. Cloud & DevOps Security</h2>
+                <ul>
+                    <li>Use IAM (Identity and Access Management).</li>
+                    <li>Encrypt data in transit and at rest.</li>
+                    <li>Regularly patch images and dependencies.</li>
+                    <li>Follow the principle of least privilege (PoLP).</li>
+                </ul>
+            </section>
+
+            <section id="bestPractices">
+                <h2>11. Best Practices</h2>
+                <ul>
+                    <li>Automate everything (testing, deployment, monitoring).</li>
+                    <li>Version control for infrastructure (IaC with Terraform).</li>
+                    <li>Monitor performance and security continuously.</li>
+                    <li>Encourage collaboration and feedback loops.</li>
+                </ul>
+            </section>
+
+            <section id="practice">
+                <h2>12. Hands-On Practice</h2>
+                <ol>
+                    <li>Create a simple web app and host it on AWS or Azure.</li>
+                    <li>Build a CI/CD pipeline using GitHub Actions.</li>
+                    <li>Deploy a Docker container with Nginx.</li>
+                    <li>Set up monitoring using Prometheus and Grafana.</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        window.showSection = function (id) {
+            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+            const sec = document.getElementById(id);
+            if (sec) sec.classList.add('active');
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('downloadNotes');
+            btn.addEventListener('click', () => {
+                const title = document.querySelector('main h1')?.innerText || 'Cloud & DevOps Tutorial';
+                const sections = document.querySelectorAll('main section');
+                let text = title + '\n\n';
+                sections.forEach(sec => {
+                    const header = sec.querySelector('h2')?.innerText || sec.id;
+                    text += '=== ' + header + ' ===\n';
+                    sec.querySelectorAll('p, pre, li').forEach(n => text += n.innerText + '\n');
+                    text += '\n';
+                });
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'Cloud_DevOps_Tutorial_Notes.txt';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+            });
+        });
+    </script>
+
+</body>
+</html>

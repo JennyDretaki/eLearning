@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Tutorial for Beginners</title>
+    <style>
+        :root {
+            --neon-color: #00ffff;
+            --bg-dark: #1a1a1a;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: #111;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: var(--neon-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+            button:hover {
+                background: var(--neon-color);
+                color: #000;
+                box-shadow: 0 0 10px var(--neon-color);
+            }
+
+        #downloadNotes {
+            background-color: var(--neon-color);
+            color: #222;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        /* --- Main Content --- */
+        main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1, h2 {
+            color: var(--neon-color);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        /* --- Tables & Code --- */
+        .table-container {
+            overflow-x: auto; /* Makes tables scrollable on mobile */
+            margin: 20px 0;
+            border: 1px solid var(--neon-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Ensures data doesn't squash too much */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        pre {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--neon-color);
+        }
+
+        /* --- Desktop Layout (Screens wider than 900px) --- */
+        @media (min-width: 901px) {
+            .container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            aside {
+                width: 280px;
+                position: sticky;
+                top: 100px;
+            }
+
+            .nav-buttons {
+                grid-template-columns: 1fr; /* Stack buttons vertically on desktop */
+            }
+
+            main {
+                flex: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <h2>Table of Contents</h2>
+            <button onclick="showSection('intro')">1. Introduction to C++</button>
+            <button onclick="showSection('setup')">2. Setup & Tooling</button>
+            <button onclick="showSection('syntax')">3. Basic Syntax</button>
+            <button onclick="showSection('variables')">4. Variables & Types</button>
+            <button onclick="showSection('control')">5. Control Flow</button>
+            <button onclick="showSection('functions')">6. Functions</button>
+            <button onclick="showSection('oop')">7. OOP in C++</button>
+            <button onclick="showSection('memory')">8. Pointers & Memory</button>
+            <button onclick="showSection('stl')">9. STL & Containers</button>
+            <button onclick="showSection('templates')">10. Templates</button>
+            <button onclick="showSection('modern')">11. Modern C++</button>
+            <button onclick="showSection('threads')">12. Concurrency & Threads</button>
+            <button onclick="showSection('best')">13. Best Practices</button>
+            <button onclick="showSection('resources')">14. Resources</button>
+            <button id="downloadNotes">Download Notes</button>
+        </aside>
+
+        <main id="tutorial-content">
+            <h1>C++ — Beginner to Intermediate Tutorial</h1>
+
+            <section id="intro" class="active">
+                <h2>1. Introduction to C++</h2>
+                <p>C++ is a high-performance general-purpose programming language. It supports procedural, object-oriented, and generic programming.</p>
+                <ul>
+                    <li>Created by Bjarne Stroustrup in 1980s.</li>
+                    <li>Used for systems, games, embedded, and high-performance applications.</li>
+                    <li>Compiled language producing fast executables.</li>
+                </ul>
+            </section>
+
+            <section id="setup">
+                <h2>2. Setup & Tooling</h2>
+                <p>Install a compiler and editor:</p>
+                <pre>
+                    // Windows: Visual Studio
+                    // Linux: sudo apt install g++
+                    // macOS: brew install gcc
+                </pre>
+                <p>Compile and run:</p>
+                <pre>g++ hello.cpp -o hello
+                ./hello</pre>
+            </section>
+
+            <section id="syntax">
+                <h2>3. Basic Syntax</h2>
+                <pre>
+                    #include &lt;iostream&gt;
+                    int main() {
+                      std::cout &lt;&lt; "Hello, C++!" &lt;&lt; std::endl;
+                      return 0;
+                    }
+                </pre>
+            </section>
+
+            <section id="variables">
+                <h2>4. Variables & Types</h2>
+                <pre>
+                    int a = 10;
+                    float b = 3.14;
+                    double c = 2.718;
+                    char ch = 'A';
+                    bool flag = true;
+                    auto x = 42; // type inferred
+                </pre>
+            </section>
+
+            <section id="control">
+                <h2>5. Control Flow</h2>
+                <pre>
+                    if(a &gt; 0) { ... } else { ... }
+                    switch(ch) { case 'A': ...; break; default: ...; }
+                    for(int i=0;i&lt;10;i++) { ... }
+                    while(condition) { ... }
+                </pre>
+            </section>
+
+            <section id="functions">
+                <h2>6. Functions</h2>
+                <pre>
+                    int add(int x, int y) { return x+y; }
+                    void greet() { std::cout &lt;&lt; "Hello" &lt;&lt; std::endl; }
+
+                    int main() {
+                      int sum = add(3,4);
+                      greet();
+                    }
+                </pre>
+            </section>
+
+            <section id="oop">
+                <h2>7. Object-Oriented Programming</h2>
+                <pre>
+                    class Animal {
+                    public:
+                      virtual void speak() { std::cout &lt;&lt; "..." &lt;&lt; std::endl; }
+                      virtual ~Animal() = default;
+                    };
+
+                    class Dog : public Animal {
+                    public:
+                      void speak() override { std::cout &lt;&lt; "Woof!" &lt;&lt; std::endl; }
+                    };
+                </pre>
+            </section>
+
+            <section id="memory">
+                <h2>8. Pointers & Memory</h2>
+                <pre>
+                    int x = 10;
+                    int* ptr = &amp;x; // pointer
+                    int& ref = x;    // reference
+
+                    *ptr = 20; // modifies x
+                    ref = 30;  // modifies x
+
+                    int* arr = new int[5];
+                    delete[] arr;
+                </pre>
+            </section>
+
+            <section id="stl">
+                <h2>9. STL & Containers</h2>
+                <pre>
+                    #include &lt;vector&gt; &lt;algorithm&gt;
+                    std::vector&lt;int&gt; v = {1,2,3};
+                    std::sort(v.begin(), v.end());
+                    </pre>
+            </section>
+
+            <section id="templates">
+                <h2>10. Templates</h2>
+                <pre>
+                    template &lt;typename T&gt;
+                    T add(T a, T b) { return a + b; }
+
+                    template &lt;typename T&gt;
+                    class Stack { std::vector&lt;T&gt; data; ... };
+                </pre>
+            </section>
+
+            <section id="modern">
+                <h2>11. Modern C++</h2>
+                <pre>
+                    #include &lt;memory&gt;
+                    std::unique_ptr&lt;int&gt; p = std::make_unique&lt;int&gt;(42);
+                    auto lambda = [&lt;&gt;(){ std::cout &lt;&lt; *p &lt;&lt; std::endl; };
+                </pre>
+            </section>
+
+            <section id="threads">
+                <h2>12. Concurrency & Threads</h2>
+                <pre>
+                    #include &lt;thread&gt; &lt;mutex&gt; &lt;iostream&gt;
+                    std::mutex m;
+                    void worker(int id) {
+                      std::lock_guard&lt;std::mutex&gt; lock(m);
+                      std::cout &lt;&lt; "Worker " &lt;&lt; id &lt;&lt; "\n";
+                    }
+                    int main() {
+                      std::thread t1(worker,1);
+                      std::thread t2(worker,2);
+                      t1.join(); t2.join();
+                    }
+                </pre>
+            </section>
+
+            <section id="best">
+                <h2>13. Best Practices</h2>
+                <ul>
+                    <li>Use RAII and smart pointers</li>
+                    <li>Prefer std::vector over raw arrays</li>
+                    <li>Write small, reusable functions</li>
+                    <li>Use const and references appropriately</li>
+                    <li>Learn modern C++ features (C++11/14/17/20)</li>
+                </ul>
+            </section>
+
+            <section id="resources">
+                <h2>14. Resources</h2>
+                <ul>
+                    <li><a href="https://en.cppreference.com/w/" target="_blank" style="color: var(--neon)">cppreference.com</a></li>
+                    <li><a href="https://isocpp.org/" target="_blank" style="color: var(--neon)">isocpp.org</a></li>
+                    <li>Books: Effective Modern C++, C++ Primer, The C++ Programming Language</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+function showSection(id){
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if(sec) sec.classList.add('active');
+}
+
+document.getElementById("downloadNotes").addEventListener("click", ()=>{
+  const content = document.getElementById("tutorial-content").innerText;
+  const blob = new Blob([content], {type:"text/plain;charset=utf-8"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Cpp_Tutorial_Notes.txt";
+  link.click();
+});
+    </script>
+
+</body>
+</html>

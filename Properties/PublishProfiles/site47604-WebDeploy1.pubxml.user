@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAxb2Eva7yBUGxRQLtCCsfFAAAAAACAAAAAAAQZgAAAAEAACAAAAArD4VmpeCjOCiEpOcXDy7oOeM+qJLv4bP/WyCuM36jfwAAAAAOgAAAAAIAACAAAACV2JWYZ3kBRBXdYkclTSt9+24OiG/7h8bFXv3829crmCAAAAC02kuPQqx6DO5wq94sPC7T0DA4kM0cc+fc3eKEg2e7aEAAAADv0tUPmbXPOmspFJQHUANUaZtt3rsgcuCec6+ehKd5zxfMK7+2XrsVOm+gHSEtz+o0S+zgmgyvjGzfWvwxHQ5v</EncryptedPassword>
+    <History>False|2026-01-13T12:15:31.3793814Z||;True|2025-12-20T16:35:49.5199507+02:00||;True|2025-12-20T16:04:59.5812550+02:00||;True|2025-12-20T05:11:42.0525657+02:00||;True|2025-12-20T04:56:24.6785198+02:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Host=ep-morning-river-a41fbphm-pooler.us-east-1.aws.neon.tech%3b Database=neondb%3b Username=neondb_owner%3b Password=npg_5NYhOpQGr9qf%3b SSL Mode=VerifyFull%3b Channel Binding=Require%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
