@@ -36,7 +36,7 @@ public static class DatabaseSeeder
             if (adminUser == null)
             {
                 adminUser = new ApplicationUser { UserName = "admin", Email = "admin@fynix.com", EmailConfirmed = true };
-                var result = await userManager.CreateAsync(adminUser, "A!@#5462xcgf@@#456gccgf");
+                var result = await userManager.CreateAsync(adminUser, "Admin123!");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");
