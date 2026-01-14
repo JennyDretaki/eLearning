@@ -112,6 +112,8 @@ else
 {
     app.UseHsts();
 }
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://+:{port}");
 
 app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
