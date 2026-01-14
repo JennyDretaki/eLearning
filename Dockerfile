@@ -1,19 +1,26 @@
+# Use ASP.NET runtime image as the base
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 
-# No need to expose a fixed port; optional:
-# EXPOSE 10000  
+# Optional: Render handles ports automatically, no need to EXPOSE
+# ENV ASPNETCORE_URLS will be set below
 
+# Use .NET SDK image to build the app
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+
+# Copy all files and restore/build
 COPY . .
+RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
+# Final image
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Tell ASP.NET Core to listen on the port Render assigns
+# Tell ASP.NET Core to listen on Render's dynamic port
 ENV ASPNETCORE_URLS=http://+:$PORT
 
+# Run the application
 ENTRYPOINT ["dotnet", "ELearning.API.dll"]
